@@ -122,6 +122,12 @@ echo "WantedBy=multi-user.target" >> /lib/systemd/system/appifi-bootstrap-update
 # Create soft link
 ln -s /lib/systemd/system/appifi-bootstrap* /etc/systemd/system/multi-user.target.wants/
 
+# configure network
+echo "[Match]"                       > /etc/systemd/network/wired.network
+echo "Name=en*"                     >> /etc/systemd/network/wired.network
+echo "[Network]"                    >> /etc/systemd/network/wired.network
+echo "DHCP=ipv4"                    >> /etc/systemd/network/wired.network
+
 # Set some softwares' initial value
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
