@@ -86,4 +86,5 @@ cd /home
 # clean up
 #
 banner "Clean up"
+apt-get clean
 rm -rf ./*
