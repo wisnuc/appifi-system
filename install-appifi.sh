@@ -8,9 +8,32 @@
 # Operation Path: chroot /target
 #
 
+set -e
+
+DASH="------------------------------"
+
+#
+# echo $1 in green color
+#
+highlight()
+{
+	echo -e "\e[32m\e[1m${1}\e[0m"
+}
+
+banner()
+{
+	echo ""
+	highlight $DASH
+	highlight "$1"
+	highlight $DASH
+}
+
+banner "In install-appifi.sh file"
+
 #
 # update apt sourcelist first
 #
+banner "Update apt"
 echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list
 echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list
 echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse" >> /etc/apt/sources.list
@@ -34,6 +57,7 @@ system_run_path="/usr/local"
 #
 # install avahi packages
 #
+banner "Install avahi"
 apt-get -y install avahi-daemon avahi-utils
 
 #
@@ -45,6 +69,7 @@ cd /home/tmp
 #
 # install nodejs
 #
+banner "Install nodejs"
 wget $node_download_path
 if [ $? != 0 ]
 then
@@ -58,11 +83,13 @@ tar Jxf $node_package_name
 #
 # install some essential packages for docker
 #
+banner "Install essential packages for docker"
 apt-get -y install xz-utils git aufs-tools
 
 #
 # install docker
 #
+banner "Install docker"
 apt-get update
 apt-get -y install apt-transport-https ca-certificates
 apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F76221572C52609D
@@ -74,6 +101,7 @@ apt-get -y install docker-engine
 #
 # Related deployment with appifi bootstrap
 #
+banner "deploy our own service"
 
 # Get files
 mkdir -p /wisnuc/appifi /wisnuc/appifi-tarballs /wisnuc/appifi-tmp /wisnuc/bootstrap
