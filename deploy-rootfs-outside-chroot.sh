@@ -121,8 +121,8 @@ banner "Exit chroot"
 # unmount
 #
 banner "umount every path"
-umount ./$untar_tmp_folder/dev
-umount ./$untar_tmp_folder/proc
-umount ./$untar_tmp_folder/sys
-umount ./$untar_tmp_folder/dev/pts
 umount ./$untar_tmp_folder/tmp
+umount ./$untar_tmp_folder/dev/pts
+umount ./$untar_tmp_folder/sys
+umount ./$untar_tmp_folder/proc
+umount ./$untar_tmp_folder/dev
