@@ -22,6 +22,28 @@
 # ...
 #
 
+set -e
+
+DASH="------------------------------"
+
+#
+# echo $1 in green color
+#
+highlight()
+{
+	echo -e "\e[32m\e[1m${1}\e[0m"
+}
+
+banner()
+{
+	echo ""
+	highlight $DASH
+	highlight "$1"
+	highlight $DASH
+}
+
+banner "In deploy-rootfs-inside-chroot file"
+
 #
 # define all pathnames
 #
@@ -38,6 +60,7 @@ kernel_initrd_name="initrd.img-4.3.3.001+"
 #
 # install appifi
 #
+banner "Download install-appifi.sh"
 cd home
 wget $install_appifi_download_path
 if [ $? != 0 ]
@@ -46,16 +69,19 @@ then
    exit 110
 fi
 
+banner "Run install-appifi.sh"
 /bin/sh $install_appifi_name
 
 #
 # change fstab
 #
+banner "Edit fstab"
 echo "/dev/mmcblk0p1 /               ext4    errors=remount-ro 0       1" > etc/fstab
 
 #
 # install our own kernel
 #
+banner "Install our own kernel"
 dpkg -i $kernel_package
 cd /boot
 ln -s $kernel_bzimage_name bzImage
@@ -66,4 +92,5 @@ cd /home
 #
 # clean up
 #
+banner "Clean up"
 rm -rf ./*
