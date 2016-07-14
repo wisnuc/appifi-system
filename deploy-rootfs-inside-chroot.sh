@@ -69,7 +69,7 @@ banner "Run install-appifi.sh"
 # change fstab
 #
 banner "Edit fstab"
-echo "/dev/mmcblk0p1 /               ext4    errors=remount-ro 0       1" > etc/fstab
+echo "/dev/mmcblk0p1 /               ext4    errors=remount-ro 0       1" > /etc/fstab
 
 #
 # install our own kernel
