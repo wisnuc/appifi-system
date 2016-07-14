@@ -32,6 +32,7 @@ banner()
 	echo $DASH
 	echo "$1"
 	echo $DASH
+	echo ""
 }
 
 banner "In deploy-rootfs-inside-chroot file"
@@ -54,7 +55,7 @@ kernel_initrd_name="initrd.img-4.3.3.001+"
 #
 banner "Download install-appifi.sh"
 cd home
-wget $install_appifi_download_path
+wget $install_appifi_download_path &> /dev/null
 if [ $? != 0 ]
 then
    echo "Download install appifi script failed!"
@@ -74,7 +75,7 @@ echo "/dev/mmcblk0p1 /               ext4    errors=remount-ro 0       1" > etc/
 # install our own kernel
 #
 banner "Install our own kernel"
-dpkg -i $kernel_package
+dpkg -i $kernel_package &> /dev/null
 cd /boot
 ln -s $kernel_bzimage_name bzImage
 ln -s $kernel_initrd_name ramdisk
