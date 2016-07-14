@@ -30,8 +30,6 @@
 #
 install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/install-appifi.sh"
 install_appifi_name="install-appifi.sh"
-tarball="tmp.tar.gz"
-untar_tmp_folder="appifi-rootfs"
 
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
 kernel_bzimage_name="vmlinuz-4.3.3.001+"
