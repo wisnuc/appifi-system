@@ -31,6 +31,18 @@
 tarball="tmp.tar.gz"
 untar_tmp_folder="appifi-rootfs"
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
+deploy_rootfs_inside_chroot_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/deploy-rootfs-inside-chroot.sh"
+deploy_rootfs_inside_chroot_name="deploy-rootfs-inside-chroot.sh"
+
+#
+# download deploy_rootfs_inside_chroot file
+#
+wget $deploy_rootfs_inside_chroot_path
+if [ $? != 0 ]
+then
+   echo "Download deploy_rootfs_inside_chroot file failed!"
+   exit 110
+fi
 
 #
 # create a tmp folder
@@ -69,7 +81,7 @@ mount -t tmpfs -o size=8m tmpfs ./$untar_tmp_folder/tmp
 #
 # chroot into this fs
 #
-chroot ./$untar_tmp_folder/  /bin/bash -c "./deploy-rootfs-inside-chroot.sh"
+chroot ./$untar_tmp_folder/  /bin/bash -c "./$deploy_rootfs_inside_chroot_name"
 
 #
 # quit from chroot
