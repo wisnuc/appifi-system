@@ -18,6 +18,7 @@ banner()
 	echo $DASH
 	echo "$1"
 	echo $DASH
+	echo ""
 }
 
 banner "In install-appifi.sh file"
@@ -62,7 +63,7 @@ cd /home/tmp
 # install nodejs
 #
 banner "Install nodejs"
-wget $node_download_path
+wget $node_download_path &> /dev/null
 if [ $? != 0 ]
 then
    echo "Download nodejs package failed!"
@@ -88,7 +89,7 @@ apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F76221572C5260
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
 apt-get update &> /dev/null
 apt-get -y install linux-image-extra-$(uname -r) apparmor &> /dev/null
-apt-get -y install docker-engine
+apt-get -y install docker-engine &> /dev/null
 
 #
 # Related deployment with appifi bootstrap
