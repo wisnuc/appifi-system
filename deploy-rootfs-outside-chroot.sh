@@ -53,7 +53,7 @@ deploy_rootfs_inside_chroot_name="deploy-rootfs-inside-chroot.sh"
 # download deploy_rootfs_inside_chroot file
 #
 banner "Download deploy_rootfs_inside_chroot file"
-wget $deploy_rootfs_inside_chroot_path &> /dev/null
+wget $deploy_rootfs_inside_chroot_path
 if [ $? != 0 ]
 then
    echo "Download deploy_rootfs_inside_chroot file failed!"
