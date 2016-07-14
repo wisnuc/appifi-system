@@ -22,6 +22,26 @@
 # ...
 #
 
+set -e
+
+DASH="------------------------------"
+
+#
+# echo $1 in green color
+#
+highlight()
+{
+	echo -e "\e[32m\e[1m${1}\e[0m"
+}
+
+banner()
+{
+	echo ""
+	highlight $DASH
+	highlight "$1"
+	highlight $DASH
+}
+
 #
 # define all pathnames
 #
@@ -37,6 +57,7 @@ deploy_rootfs_inside_chroot_name="deploy-rootfs-inside-chroot.sh"
 #
 # download deploy_rootfs_inside_chroot file
 #
+banner "Download deploy_rootfs_inside_chroot file"
 wget $deploy_rootfs_inside_chroot_path
 if [ $? != 0 ]
 then
@@ -48,6 +69,7 @@ chmod 755 $deploy_rootfs_inside_chroot_name
 #
 # create a tmp folder
 #
+banner "Create tmp folder"
 mkdir tmp
 cd tmp
 cp /home/$tarball ./
@@ -55,6 +77,7 @@ cp /home/$tarball ./
 #
 # untar tarball
 #
+banner "Untar tarball"
 mkdir $untar_tmp_folder
 cd $untar_tmp_folder
 tar -zxvf ../$tarball
@@ -68,16 +91,19 @@ cd ..
 #
 # copy kernel package into this untar folder
 #
+banner "Copy kernel package into this untar folder"
 cp /home/$kernel_package ./$untar_tmp_folder/home/
 
 #
 # copy deploy_rootfs_inside_chroot file into this untar folder
 #
+banner "Copy deploy_rootfs_inside_chroot file into this untar folder"
 cp /home/$deploy_rootfs_inside_chroot_name ./$untar_tmp_folder/home/
 
 #
 # mount essential folders
 #
+banner "Mount essential folders"
 mount -t devtmpfs dev ./$untar_tmp_folder/dev
 mount -t proc proc ./$untar_tmp_folder/proc
 mount -t sysfs none ./$untar_tmp_folder/sys
@@ -87,16 +113,19 @@ mount -t tmpfs -o size=8m tmpfs ./$untar_tmp_folder/tmp
 #
 # chroot into this fs
 #
+banner "chroot & run deploy_rootfs_inside_chroot file"
 chroot ./$untar_tmp_folder/  /bin/bash -c "/home/$deploy_rootfs_inside_chroot_name"
 
 #
 # quit from chroot
 #
+banner "Exit chroot"
 exit
 
 #
 # unmount
 #
+banner "umount every path"
 umount ./$untar_tmp_folder/dev
 umount ./$untar_tmp_folder/proc
 umount ./$untar_tmp_folder/sys
