@@ -115,7 +115,7 @@ chroot ./$untar_tmp_folder/  /bin/bash -c "/home/$deploy_rootfs_inside_chroot_na
 # quit from chroot
 #
 banner "Exit chroot"
-exit
+# exit
 
 #
 # unmount
