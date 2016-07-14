@@ -63,7 +63,7 @@ cd /home/tmp
 # install nodejs
 #
 banner "Install nodejs"
-wget $node_download_path &> /dev/null
+wget $node_download_path
 if [ $? != 0 ]
 then
    echo "Download nodejs package failed!"
