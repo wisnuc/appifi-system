@@ -75,7 +75,7 @@ echo "/dev/mmcblk0p1 /               ext4    errors=remount-ro 0       1" > etc/
 # install our own kernel
 #
 banner "Install our own kernel"
-dpkg -i $kernel_package &> /dev/null
+dpkg -i $kernel_package
 cd /boot
 ln -s $kernel_bzimage_name bzImage
 ln -s $kernel_initrd_name ramdisk
