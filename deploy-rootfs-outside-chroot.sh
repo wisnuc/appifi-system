@@ -81,7 +81,7 @@ mount -t tmpfs -o size=8m tmpfs ./$untar_tmp_folder/tmp
 #
 # chroot into this fs
 #
-chroot ./$untar_tmp_folder/  /bin/bash -c "./$deploy_rootfs_inside_chroot_name"
+chroot ./$untar_tmp_folder/  /bin/bash -c "/home/$deploy_rootfs_inside_chroot_name"
 
 #
 # quit from chroot
