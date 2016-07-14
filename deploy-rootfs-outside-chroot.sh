@@ -43,6 +43,7 @@ then
    echo "Download deploy_rootfs_inside_chroot file failed!"
    exit 110
 fi
+chmod 755 $deploy_rootfs_inside_chroot_name
 
 #
 # create a tmp folder
