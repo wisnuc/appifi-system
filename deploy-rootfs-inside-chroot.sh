@@ -55,7 +55,7 @@ kernel_initrd_name="initrd.img-4.3.3.001+"
 #
 banner "Download install-appifi.sh"
 cd home
-wget $install_appifi_download_path &> /dev/null
+wget $install_appifi_download_path
 if [ $? != 0 ]
 then
    echo "Download install appifi script failed!"
