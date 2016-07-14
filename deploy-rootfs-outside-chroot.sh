@@ -32,6 +32,7 @@ banner()
 	echo $DASH
 	echo "$1"
 	echo $DASH
+	echo ""
 }
 
 banner "In deploy-rootfs-outside-chroot file"
@@ -52,7 +53,7 @@ deploy_rootfs_inside_chroot_name="deploy-rootfs-inside-chroot.sh"
 # download deploy_rootfs_inside_chroot file
 #
 banner "Download deploy_rootfs_inside_chroot file"
-wget $deploy_rootfs_inside_chroot_path
+wget $deploy_rootfs_inside_chroot_path &> /dev/null
 if [ $? != 0 ]
 then
    echo "Download deploy_rootfs_inside_chroot file failed!"
@@ -63,7 +64,7 @@ chmod 755 $deploy_rootfs_inside_chroot_name
 #
 # create a tmp folder
 #
-banner "Create tmp folder"
+banner "Create tmp folder & copy tarball"
 mkdir tmp
 cd tmp
 cp /home/$tarball ./
