@@ -28,13 +28,9 @@
 # version
 # nodejs: 6.2.2
 #
-install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/install-appifi.sh"
 tarball="tmp.tar.gz"
 untar_tmp_folder="appifi-rootfs"
-
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
-kernel_bzimage_name="vmlinuz-4.3.3.001+"
-kernel_initrd_name="initrd.img-4.3.3.001+"
 
 #
 # create a tmp folder
