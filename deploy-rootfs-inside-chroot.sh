@@ -26,20 +26,12 @@ set -e
 
 DASH="------------------------------"
 
-#
-# echo $1 in green color
-#
-highlight()
-{
-	echo -e "\e[32m\e[1m${1}\e[0m"
-}
-
 banner()
 {
 	echo ""
-	highlight $DASH
-	highlight "$1"
-	highlight $DASH
+	echo $DASH
+	echo "$1"
+	echo $DASH
 }
 
 banner "In deploy-rootfs-inside-chroot file"
