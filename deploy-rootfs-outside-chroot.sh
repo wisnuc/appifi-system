@@ -71,6 +71,11 @@ cd ..
 cp /home/$kernel_package ./$untar_tmp_folder/home/
 
 #
+# copy deploy_rootfs_inside_chroot file into this untar folder
+#
+cp $deploy_rootfs_inside_chroot_name ./tmp/$untar_tmp_folder/home/
+
+#
 # mount essential folders
 #
 mount -t devtmpfs dev ./$untar_tmp_folder/dev
