@@ -49,6 +49,8 @@ kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
 deploy_rootfs_inside_chroot_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/deploy-rootfs-inside-chroot.sh"
 deploy_rootfs_inside_chroot_name="deploy-rootfs-inside-chroot.sh"
 
+new_tarball_name="wisnuc-appifi-rootfs.tar.gz"
+
 #
 # download deploy_rootfs_inside_chroot file
 #
@@ -126,3 +128,11 @@ umount ./$untar_tmp_folder/dev/pts
 umount ./$untar_tmp_folder/sys
 umount ./$untar_tmp_folder/proc
 umount ./$untar_tmp_folder/dev
+
+#
+# make new tarball
+#
+banner "Make new tarball"
+cd ./$untar_tmp_folder/
+tar -zcf /home/$new_tarball_name ./*
+cd /home
