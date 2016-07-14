@@ -42,6 +42,8 @@ banner()
 	highlight $DASH
 }
 
+banner "In deploy-rootfs-outside-chroot file"
+
 #
 # define all pathnames
 #
