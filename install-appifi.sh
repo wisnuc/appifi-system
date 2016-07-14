@@ -12,20 +12,12 @@ set -e
 
 DASH="------------------------------"
 
-#
-# echo $1 in green color
-#
-highlight()
-{
-	echo -e "\e[32m\e[1m${1}\e[0m"
-}
-
 banner()
 {
 	echo ""
-	highlight $DASH
-	highlight "$1"
-	highlight $DASH
+	echo $DASH
+	echo "$1"
+	echo $DASH
 }
 
 banner "In install-appifi.sh file"
@@ -58,7 +50,7 @@ system_run_path="/usr/local"
 # install avahi packages
 #
 banner "Install avahi"
-apt-get -y install avahi-daemon avahi-utils
+apt-get -y install avahi-daemon avahi-utils &> /dev/null
 
 #
 # create a new empty folder
@@ -84,18 +76,18 @@ tar Jxf $node_package_name
 # install some essential packages for docker
 #
 banner "Install essential packages for docker"
-apt-get -y install xz-utils git aufs-tools
+apt-get -y install xz-utils git aufs-tools &> /dev/null
 
 #
 # install docker
 #
 banner "Install docker"
-apt-get update
-apt-get -y install apt-transport-https ca-certificates
+apt-get update &> /dev/null
+apt-get -y install apt-transport-https ca-certificates &> /dev/null
 apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
-apt-get update
-apt-get -y install linux-image-extra-$(uname -r) apparmor
+apt-get update &> /dev/null
+apt-get -y install linux-image-extra-$(uname -r) apparmor &> /dev/null
 apt-get -y install docker-engine
 
 #
