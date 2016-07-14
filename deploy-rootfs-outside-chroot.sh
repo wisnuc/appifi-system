@@ -26,20 +26,12 @@ set -e
 
 DASH="------------------------------"
 
-#
-# echo $1 in green color
-#
-highlight()
-{
-	echo -e "\e[32m\e[1m${1}\e[0m"
-}
-
 banner()
 {
 	echo ""
-	highlight $DASH
-	highlight "$1"
-	highlight $DASH
+	echo $DASH
+	echo "$1"
+	echo $DASH
 }
 
 banner "In deploy-rootfs-outside-chroot file"
@@ -82,7 +74,7 @@ cp /home/$tarball ./
 banner "Untar tarball"
 mkdir $untar_tmp_folder
 cd $untar_tmp_folder
-tar -zxvf ../$tarball
+tar -zxf ../$tarball
 if [ $? != 0 ]
 then
    echo "Untar tarball failed!"
