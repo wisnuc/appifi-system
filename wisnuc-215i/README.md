@@ -1,7 +1,7 @@
 # appifi-system for wisnuc-215i
 
 ### Goal
-`Create a new rootfs.tar.gz for wisnuc-215i from ubuntu 16.04 64bit rootfs.tar.gz`<p>
+  1. Create a new rootfs.tar.gz for wisnuc-215i from ubuntu 16.04 64bit rootfs.tar.gz
 
 ### Prerequisite
   + Windows 7 Ultimate 64bit
@@ -18,6 +18,6 @@
   + How to create Ubuntu 16.04 64bit rootfs.tar.gz?
     - Use VMware to install Ubuntu 16.04 64bit
       1. You have to create two virtual disks, and separately install Ubuntu into both of them
-      2. When first disk installation is succeed, DO NOT reboot you system, You need to store a clean environment, so poweroff system directly, then install second disk, when that is done, reboot system and boot system with second disk, finally mount first disk as removeable disk into second Ubuntu system, COPY them, done!
+      2. When first disk installation is succeed, **DO NOT** reboot you system, You need to store a clean environment, so poweroff system directly, then install second disk, when that is done, reboot system and boot system with second disk, finally mount first disk as removeable disk into second Ubuntu system, **COPY** them, done!
     - Use PC to install Ubuntu 16.04 64bit
-  + 
+      1. When installation is done, **DO NOT** reboot system, use rescue USB disk to reboot system instead, then **MOUNT** & **COPY** system disk, done
