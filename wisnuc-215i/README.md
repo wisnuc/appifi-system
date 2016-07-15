@@ -13,7 +13,9 @@
 ### Caution
   1. Assume origin rootfs package just like rootfs.tar.gz already exits under host's /home/ folder
   2. Assume kernel package just like linux-image-4.3.3.001+_001_amd64.deb already exits under host's /home/ folder
-  3. Only need to run '**deploy-rootfs-outside-chroot.sh**', but you have to modify this file and '**deploy-rootfs-inside-chroot.sh**' if some names have changed like '*rootfs.tar.gz*' or '*linux-image-4.3.3.001+_001_amd64.deb*'
+
+### Procedure
+  1. Only need to run '**deploy-rootfs-outside-chroot.sh**', but you have to modify this file and '**deploy-rootfs-inside-chroot.sh**' if some names have changed like '*rootfs.tar.gz*' or '*linux-image-4.3.3.001+_001_amd64.deb*'
 
 ### Tips
   + How to create Ubuntu 16.04 64bit rootfs.tar.gz?
