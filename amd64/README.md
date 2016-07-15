@@ -1,4 +1,4 @@
-# appifi-system for amd64 platfor
+# appifi-system for amd64 platform
 system installation for appifi and it's dependencies
 
 ### Goal
