@@ -23,4 +23,4 @@
       1. You have to create two virtual disks, and separately install Ubuntu into both of them
       2. When first disk installation is succeed, **DO NOT** reboot you system, You need to store a clean environment, so poweroff system directly, then install second disk, when that is done, reboot system and boot system with second disk, finally mount first disk as removeable disk into second Ubuntu system, **COPY** them, done!
     - Use PC to install Ubuntu 16.04 64bit
-      1. When installation is done, **DO NOT** reboot system, use rescue U disk to reboot system instead, then **MOUNT** & **COPY** system disk, done
+      1. When installation is done, **DO NOT** reboot system, poweroff and use rescue U disk to reboot system instead, then **MOUNT** & **COPY** system disk, done
