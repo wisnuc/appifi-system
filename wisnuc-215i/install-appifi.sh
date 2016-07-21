@@ -90,7 +90,7 @@ apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F76221572C5260
 echo "deb https://mirrors.ustc.edu.cn/apt.dockerproject.org/repo/ ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
 
 apt-get update
-# apt-get -y install linux-image-extra-$(uname -r) apparmor
+apt-get -y install linux-image-extra-$(uname -r) apparmor
 apt-get -y install docker-engine
 
 #
