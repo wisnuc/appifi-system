@@ -43,7 +43,7 @@ banner "In deploy-rootfs-outside-chroot file"
 # version
 # nodejs: 6.2.2
 #
-tarball="tmp.tar.gz"
+tarball="rootfs.tar.gz"
 untar_tmp_folder="appifi-rootfs"
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
 # deploy_rootfs_inside_chroot_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/deploy-rootfs-inside-chroot.sh"
