@@ -52,6 +52,13 @@ kernel_bzimage_name="vmlinuz-4.3.3.001+"
 kernel_initrd_name="initrd.img-4.3.3.001+"
 
 #
+# close auto-update
+#
+echo "APT::Periodic::Update-Package-Lists "0";" > /etc/apt/apt.conf.d/10periodic
+echo "APT::Periodic::Download-Upgradeable-Packages "0";" >> /etc/apt/apt.conf.d/10periodic
+echo "APT::Periodic::AutocleanInterval "0";" >> /etc/apt/apt.conf.d/10periodic
+
+#
 # install appifi
 #
 banner "Download install-appifi.sh"
