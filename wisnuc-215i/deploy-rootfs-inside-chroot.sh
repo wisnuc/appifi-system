@@ -94,7 +94,7 @@ cd /home
 # clean up
 #
 banner "Clean up"
-apt-get autoremove --purge linux-headers-generic linux-generic
-apt-get autoremove --purge linux-headers-4.4.0-21 linux-headers-4.4.0-21-generic linux-image-extra-4.4.0-21-generic linux-image-4.4.0-21-generic
+apt-get -y autoremove --purge linux-headers-generic linux-generic
+apt-get -y autoremove --purge linux-headers-4.4.0-21 linux-headers-4.4.0-21-generic linux-image-extra-4.4.0-21-generic linux-image-4.4.0-21-generic
 apt-get clean
 rm -rf ./*
