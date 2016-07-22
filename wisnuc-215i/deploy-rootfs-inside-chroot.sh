@@ -52,6 +52,13 @@ kernel_bzimage_name="vmlinuz-4.3.3.001+"
 kernel_initrd_name="initrd.img-4.3.3.001+"
 
 #
+# close auto-update
+#
+echo "APT::Periodic::Update-Package-Lists "0";" > /etc/apt/apt.conf.d/10periodic
+echo "APT::Periodic::Download-Upgradeable-Packages "0";" >> /etc/apt/apt.conf.d/10periodic
+echo "APT::Periodic::AutocleanInterval "0";" >> /etc/apt/apt.conf.d/10periodic
+
+#
 # install appifi
 #
 banner "Download install-appifi.sh"
@@ -87,5 +94,7 @@ cd /home
 # clean up
 #
 banner "Clean up"
+apt-get -y autoremove --purge linux-headers-generic linux-generic
+apt-get -y autoremove --purge linux-headers-4.4.0-21 linux-headers-4.4.0-21-generic linux-image-extra-4.4.0-21-generic linux-image-4.4.0-21-generic
 apt-get clean
 rm -rf ./*
