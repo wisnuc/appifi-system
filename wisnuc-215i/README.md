@@ -24,3 +24,6 @@
       2. When first disk installation is succeed, **DO NOT** reboot you system, You need to store a clean environment, so poweroff system directly, then install second disk, when that is done, reboot system and boot system with second disk, finally mount first disk as removeable disk into second Ubuntu system, **COPY** them, done!
     - Use PC to install Ubuntu 16.04 64bit
       1. When installation is done, **DO NOT** reboot system, poweroff and use rescue U disk to reboot system instead, then **MOUNT** & **COPY** system disk, done
+    - install-appifi.sh & install-appifi.sh.backup
+      1. 'install-appifi.sh.backup' installs docker with apt sourcelist of 'apt.dockerproject.org'
+      2. 'install-appifi.sh' installs docker with binaries of 'https://get.docker.com/builds/Linux/x86_64/docker-1.11.2.tgz'
