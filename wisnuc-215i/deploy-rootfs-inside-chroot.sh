@@ -94,7 +94,8 @@ cd /home
 # clean up
 #
 banner "Clean up"
-apt-get -y autoremove linux-image-4.4.0* linux-headers-4.4.0*
-apt-get -y --purge remove linux-image-extra-4.4.0* linux-image-4.4.0*
+#apt-get -y autoremove linux-headers-4.4.0-21-generic
+#apt-get -y autoremove linux-headers-4.4.0-21-generic linux-headers-4.4.0-21 linux-headers-generic 
+#apt-get -y --purge remove linux-image-extra-4.4.0* linux-image-4.4.0*
 apt-get clean
 rm -rf ./*
