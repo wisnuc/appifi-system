@@ -27,3 +27,4 @@
     - **install-appifi.sh** & **install-appifi.sh.backup**
       1. 'install-appifi.sh.backup' installs docker with apt sourcelist of 'apt.dockerproject.org'
       2. 'install-appifi.sh' installs docker with binaries of 'https://get.docker.com/builds/Linux/x86_64/docker-1.11.2.tgz'
+      3. [**docker: 1.11.2 Reference**](https://docs.docker.com/engine/installation/binaries/)<p>
