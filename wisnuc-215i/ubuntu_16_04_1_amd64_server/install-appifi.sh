@@ -39,11 +39,11 @@ apt-get update
 # define all pathnames
 #
 # version
-# nodejs: 6.2.2
+# nodejs: 6.3.1
 #
-node_download_path="https://nodejs.org/dist/v6.2.2/node-v6.2.2-linux-x64.tar.xz"
-node_package_name="node-v6.2.2-linux-x64.tar.xz"
-node_home_path="node-v6.2.2-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.3.1/node-v6.3.1-linux-x64.tar.xz"
+node_package_name="node-v6.3.1-linux-x64.tar.xz"
+node_home_path="node-v6.3.1-linux-x64"
 
 docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.11.2.tgz"
 docker_package_name="docker-1.11.2.tgz"
@@ -158,7 +158,6 @@ echo "DHCP=ipv4"                    >> /etc/systemd/network/wired.network
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable avahi-daemon
-# systemctl disable docker
 systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
 
