@@ -43,8 +43,7 @@ banner "In deploy-rootfs-inside-chroot file"
 # version
 # nodejs: 6.2.2
 #
-# install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/install-appifi.sh"
-install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/install-appifi.sh"
+install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64_server/install-appifi.sh"
 install_appifi_name="install-appifi.sh"
 
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
@@ -95,6 +94,6 @@ cd /home
 #
 banner "Clean up"
 apt-get -y autoremove --purge linux-headers-generic linux-generic
-apt-get -y autoremove --purge linux-headers-4.4.0-21 linux-headers-4.4.0-21-generic linux-image-extra-4.4.0-21-generic linux-image-4.4.0-21-generic
+apt-get -y autoremove --purge linux-headers-4.4.0-31 linux-headers-4.4.0-31-generic linux-image-extra-4.4.0-31-generic linux-image-4.4.0-31-generic
 apt-get clean
 rm -rf ./*
