@@ -8,15 +8,15 @@
 # prerequisite:
 # 1. mount that disk partition which to be package as rootfs.tar.gz to this running system
 # 2. assume the mount path is /home/tmp/
-# 3. tar the whole folder with tar -zcvf /home/tmp.tar.gz /home/tmp/*
+# 3. tar the whole folder with tar -zcvf /home/rootfs.tar.gz /home/tmp/*
 # 4. umount that disk partition
 #
 
 #
 # procedure:
-# 1. assume origin rootfs package just like tmp.tar.gz already exits under /home/ folder
+# 1. assume origin rootfs package just like rootfs.tar.gz already exits under /home/ folder
 # 2. assume kernel package just like kernel.deb already exits under /home/ folder
-# 3. untar tmp.tar.gz
+# 3. untar rootfs.tar.gz
 # 4. copy kernel.deb into untar folder
 # 5. mount dev proc sys pts tmp
 # ...
@@ -43,12 +43,19 @@ banner "In deploy-rootfs-inside-chroot file"
 # version
 # nodejs: 6.2.2
 #
-install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/install-appifi.sh"
+install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64_server/install-appifi.sh"
 install_appifi_name="install-appifi.sh"
 
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
 kernel_bzimage_name="vmlinuz-4.3.3.001+"
 kernel_initrd_name="initrd.img-4.3.3.001+"
+
+#
+# close auto-update
+#
+echo "APT::Periodic::Update-Package-Lists "0";" > /etc/apt/apt.conf.d/10periodic
+echo "APT::Periodic::Download-Upgradeable-Packages "0";" >> /etc/apt/apt.conf.d/10periodic
+echo "APT::Periodic::AutocleanInterval "0";" >> /etc/apt/apt.conf.d/10periodic
 
 #
 # install appifi
@@ -86,5 +93,7 @@ cd /home
 # clean up
 #
 banner "Clean up"
+apt-get -y autoremove --purge linux-headers-generic linux-generic
+apt-get -y autoremove --purge linux-headers-4.4.0-31 linux-headers-4.4.0-31-generic linux-image-extra-4.4.0-31-generic linux-image-4.4.0-31-generic
 apt-get clean
 rm -rf ./*
