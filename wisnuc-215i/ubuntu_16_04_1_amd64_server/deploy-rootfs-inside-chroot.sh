@@ -8,15 +8,15 @@
 # prerequisite:
 # 1. mount that disk partition which to be package as rootfs.tar.gz to this running system
 # 2. assume the mount path is /home/tmp/
-# 3. tar the whole folder with tar -zcvf /home/tmp.tar.gz /home/tmp/*
+# 3. tar the whole folder with tar -zcvf /home/rootfs.tar.gz /home/tmp/*
 # 4. umount that disk partition
 #
 
 #
 # procedure:
-# 1. assume origin rootfs package just like tmp.tar.gz already exits under /home/ folder
+# 1. assume origin rootfs package just like rootfs.tar.gz already exits under /home/ folder
 # 2. assume kernel package just like kernel.deb already exits under /home/ folder
-# 3. untar tmp.tar.gz
+# 3. untar rootfs.tar.gz
 # 4. copy kernel.deb into untar folder
 # 5. mount dev proc sys pts tmp
 # ...
