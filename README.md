@@ -2,6 +2,6 @@
 system installation for appifi and it's dependencies
 
 ### Caution
-  1. Assume origin rootfs package just like tmp.tar.gz already exits under /home/ folder
-  2. Assume kernel package just like kernel.deb already exits under /home/ folder
-  3. Only need to run '**deploy-rootfs-outside-chroot.sh**', but you have to modify this file and '**deploy-rootfs-inside-chroot.sh**' if some names have changed like '*tmp.tar.gz*' or '*kernel.deb*'
+  1. It can be deployed on X86 & 215i which is a product of Wisnuc
+  2. We offer ovf file for X86 user; U disk image for 215i user
+  3. You can find the procedure of making ovf & rootfs in each folder
