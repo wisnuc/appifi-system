@@ -43,7 +43,7 @@ banner "In deploy-rootfs-inside-chroot file"
 # version
 # nodejs: 6.2.2
 #
-install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64_server/install-appifi.sh"
+install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64_core/install-appifi.sh"
 install_appifi_name="install-appifi.sh"
 
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
@@ -56,6 +56,24 @@ kernel_initrd_name="initrd.img-4.3.3.001+"
 echo "APT::Periodic::Update-Package-Lists "0";" > /etc/apt/apt.conf.d/10periodic
 echo "APT::Periodic::Download-Upgradeable-Packages "0";" >> /etc/apt/apt.conf.d/10periodic
 echo "APT::Periodic::AutocleanInterval "0";" >> /etc/apt/apt.conf.d/10periodic
+
+#
+# update apt sourcelist first
+#
+banner "Update apt"
+echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list
+echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list
+echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse" >> /etc/apt/sources.list
+echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list
+echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list
+
+apt-get update
+
+#
+# Download wget
+#
+banner "Download wget"
+apt-get -y wget
 
 #
 # install appifi
