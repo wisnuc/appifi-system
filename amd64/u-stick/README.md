@@ -47,4 +47,11 @@ Make sure that rootfs.tar.gz under /home folder
   INITRD initrd.img-???  
   ```
   
-  7. Done
+  7. zerofree /dev/sdb2
+  ps: zerofree only can deal with 'ext4' family<p>
+
+  8. clone the U Stick
+  `dd if=/dev/sdb of=ustick.img bs=512 count=7733248 conv=noerror,notrunc`<p>
+
+  9. tar the image
+  `gzip -9 ustick.img`<p>
