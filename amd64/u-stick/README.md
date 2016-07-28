@@ -36,7 +36,7 @@ Make sure that rootfs.tar.gz under /home folder
   5. Install the bootloader -syslinux<p>
   `syslinux -i /dev/sdb1`<p>
 
-  6. Configure the bootloader
+  6. Configure the bootloader<p>
   ```
   PROMPT 0
   TIMEOUT 1
@@ -47,11 +47,13 @@ Make sure that rootfs.tar.gz under /home folder
   INITRD initrd.img-???  
   ```
   
-  7. zerofree /dev/sdb2
+  7. zerofree /dev/sdb2<p>
   ps: zerofree only can deal with 'ext4' family<p>
 
-  8. clone the U Stick
+  8. Clone the U Stick<p>
   `dd if=/dev/sdb of=ustick.img bs=512 count=7733248 conv=noerror,notrunc`<p>
 
-  9. tar the image
+  9. Tar the image<p>
   `gzip -9 ustick.img`<p>
+
+  10. Done
