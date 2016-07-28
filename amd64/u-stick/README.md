@@ -56,4 +56,4 @@ Make sure that rootfs.tar.gz under /home folder
   9. Tar the image<p>
   `gzip -9 ustick.img`<p>
 
-  10. Done
+  10. Burn this image to a real U Stick
