@@ -30,6 +30,21 @@ Make sure that rootfs.tar.gz under /home folder
   ```
   
   3. Untar rootfs.tar.gz into /mnt/root
+
   4. Copy /mnt/root/boot/vmlinuz-4.4.0-31-generic & /mnt/root/boot/initrd.img-4.4.0-31-generic into /mnt/boot folder
-  5. Install the bootloader -syslinux
+
+  5. Install the bootloader -syslinux<p>
   `syslinux -i /dev/sdb1`<p>
+
+  6. Configure the bootloader
+  ```
+  PROMPT 0
+  TIMEOUT 1
+  DEFAULT wisnuc
+  LABEL wisnuc
+  LINUX vmlinuz-???
+  APPEND root=UUID=??? rw
+  INITRD initrd.img-???  
+  ```
+  
+  7. Done
