@@ -2,7 +2,8 @@
 Create a bootable U Stick for X86 platform
 
 ### Prerequisite
-Make sure that rootfs.tar.gz under /home folder
+  1. rootfs.tar.gz which includes Ubuntu 16.04.1 & latest appifi application
+  2. Make sure that rootfs.tar.gz under /home folder
 
 ### Procedure
   1. Create two filesystems on the U Stick<p>
