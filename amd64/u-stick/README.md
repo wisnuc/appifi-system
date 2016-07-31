@@ -1,6 +1,9 @@
 ### Goal
 Create a bootable U Stick for X86 platform
 
+### Reference
+[Reference](http://www.richud.com/wiki/Ubuntu_Create_Hard_Drive_Image)
+
 ### Prerequisite
   1. rootfs.tar.gz which includes Ubuntu 16.04.1 & latest appifi application
   2. Make sure that rootfs.tar.gz under /home folder
