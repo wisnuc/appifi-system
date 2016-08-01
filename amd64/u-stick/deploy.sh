@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Under Ubuntu 16.04.1 platform
+#
+
 vmlinuz="vmlinuz-4.4.0-31-generic"
 initrd="initrd.img-4.4.0-31-generic"
 
@@ -9,7 +13,7 @@ mkdir tmp
 cd tmp
 rm -rf *
 
-echo "###################  dd a empty image  ###################"
+echo "###################  dd an empty image  ###################"
 dd if=/dev/zero of=ustick.img bs=512 count=7733248 conv=noerror,notrunc
 
 echo "###################  set up a new loop device - loop0  ###################"
