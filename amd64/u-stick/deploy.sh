@@ -2,7 +2,6 @@
 
 vmlinuz="vmlinuz-4.4.0-31-generic"
 initrd="initrd.img-4.4.0-31-generic"
-rootfs_uuid=`blkid | grep /dev/loop2 | awk '{print $2}' | cut -b 7-42`
 
 cd /home
 mkdir tmp
@@ -37,6 +36,8 @@ cp ../root/boot/$vmlinuz .
 cp ../root/boot/$initrd .
 
 syslinux -i /dev/loop1
+
+rootfs_uuid=`blkid | grep /dev/loop2 | awk '{print $2}' | cut -b 7-42`
 
 echo "PROMPT 0" > syslinux.cfg
 echo "TIMEOUT 1" >> syslinux.cfg
