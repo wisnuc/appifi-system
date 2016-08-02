@@ -37,7 +37,7 @@ Create a bootable U Stick for X86 platform
 
   4. Copy /mnt/root/boot/vmlinuz-4.4.0-31-generic & /mnt/root/boot/initrd.img-4.4.0-31-generic into /mnt/boot folder
 
-  5. Install the bootloader -syslinux<p>
+  5. Install the bootloader - **syslinux**<p>
   `syslinux -i /dev/sdb1`<p>
 
   6. Configure the bootloader<p>
@@ -57,15 +57,15 @@ Create a bootable U Stick for X86 platform
   8. Burn this image to other real U Sticks
 
 ### Appendix
-  ##### Compress image for space saving
+  + Compress image for space saving
     1. zerofree /dev/sdb2<p>
     ps: zerofree only can deal with 'ext4' family<p>
   
     2. Tar the image<p>
     `gzip -9 ustick.img`<p>
     
-  ##### Using loop device to create image
-    1. "deploy.sh" uses loop device to create u stick image
+  + Using loop device to create image
+    1. **deploy.sh** uses loop device to create u stick image
     2. When the script finishes, it will create a ustick.img under /home/tmp folder
     3. Burn this image to a real U Stick
     4. Ubuntu 16.04 does not get on well with syslinux & loop, so you have to reinstall them on this U Stick again
