@@ -51,13 +51,21 @@ Create a bootable U Stick for X86 platform
   INITRD initrd.img-???  
   ```
   
-  7. zerofree /dev/sdb2<p>
-  ps: zerofree only can deal with 'ext4' family<p>
+  7. Clone the U Stick<p>
+  `dd if=/dev/sdb of=ustick.img bs=512 count=7733248 conv=noerror,notrunc`<p>  
+  
+  8. Burn this image to other real U Sticks
 
-  8. Clone the U Stick<p>
-  `dd if=/dev/sdb of=ustick.img bs=512 count=7733248 conv=noerror,notrunc`<p>
-
-  9. Tar the image<p>
-  `gzip -9 ustick.img`<p>
-
-  10. Burn this image to a real U Stick
+### Appendix
+  ##### Compress image for space saving
+    1. zerofree /dev/sdb2<p>
+    ps: zerofree only can deal with 'ext4' family<p>
+  
+    2. Tar the image<p>
+    `gzip -9 ustick.img`<p>
+    
+  ##### Using loop device to create image
+    1. "deploy.sh" uses loop device to create u stick image
+    2. When the script finishes, it will create a ustick.img under /home/tmp folder
+    3. Burn this image to a real U Stick
+    4. Ubuntu 16.04 does not get on well with syslinux & loop, so you have to reinstall them on this U Stick again
