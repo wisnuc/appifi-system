@@ -2,6 +2,7 @@
 
 #
 # Under Ubuntu 16.04.1 platform
+# Due to timing-dependent race between syslinux/mtools and udev, we have to reinstall mbr & syslinux when u stick has pluged in
 #
 
 vmlinuz="vmlinuz-4.4.0-31-generic"
@@ -20,6 +21,7 @@ echo "###################  set up a new loop device - loop0  ###################
 losetup /dev/loop0 ustick.img
 
 echo "###################  write MBR to loop0  ###################"
+# Will fail
 dd bs=440 count=1 if=/usr/lib/syslinux/mbr/mbr.bin of=/dev/loop0 conv=noerror,notrunc
 
 echo "###################  fdisk for loop0  ###################"
@@ -44,9 +46,19 @@ echo "###################  mount loop1 & loop2  ###################"
 mount /dev/loop1 /mnt/boot
 mount /dev/loop2 /mnt/root
 
+echo "###################  get loop2's uuid  ###################"
+rootfs_uuid=`blkid | grep /dev/loop2 | awk '{print $2}' | cut -b 7-42`
+
 echo "###################  enter into loop2 (/mnt/root) & untar rootfs.tar.gz ###################"
 cd /mnt/root
 tar zxf /home/rootfs.tar.gz
+
+echo "################### modify fstab & interface   ###################"
+echo "source /etc/network/interfaces.d/*" > etc/network/interfaces
+echo "auto lo" >> etc/network/interfaces
+echo "iface lo inet loopback" >> etc/network/interfaces
+
+echo "UUID=$rootfs_uuid /               ext4    errors=remount-ro 0       1" > etc/fstab
 
 echo "###################  enter into loop1 (/mnt/boot) & copy vmlinuz and initrd  ###################"
 cd /mnt/boot
@@ -54,10 +66,8 @@ cp ../root/boot/$vmlinuz .
 cp ../root/boot/$initrd .
 
 echo "###################  install syslinux on loop1  ###################"
+# Will fail
 syslinux -i /dev/loop1
-
-echo "###################  get loop2's uuid  ###################"
-rootfs_uuid=`blkid | grep /dev/loop2 | awk '{print $2}' | cut -b 7-42`
 
 echo "###################  create syslinux.cfg  ###################"
 echo "PROMPT 0" > syslinux.cfg
@@ -76,3 +86,5 @@ umount /dev/loop2
 
 losetup -d /dev/loop1
 losetup -d /dev/loop2
+
+echo "###################  remember to reinstall mbr & syslinux  ###################"
