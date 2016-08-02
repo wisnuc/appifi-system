@@ -65,7 +65,7 @@ Create a bootable U Stick for X86 platform
     `gzip -9 ustick.img`<p>
     
   + Using loop device to create image
-    1. **deploy.sh** uses loop device to create u stick image
+    1. [**deploy.sh**](https://github.com/JiangWeiGitHub/appifi-system/blob/master/amd64/u-stick/deploy.sh) uses loop device to create u stick image
     2. When the script finishes, it will create a ustick.img under /home/tmp folder
     3. Burn this image to a real U Stick
-    4. Ubuntu 16.04 does not get on well with syslinux & loop, so you have to reinstall them on this U Stick again
+    4. Ubuntu 16.04 does not get on well with syslinux & loop, so you have to reinstall mbr & syslinux on this U Stick again
