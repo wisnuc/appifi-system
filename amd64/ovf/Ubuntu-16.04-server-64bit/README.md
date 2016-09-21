@@ -29,7 +29,7 @@ system installation for appifi and it's dependencies
 + HostName: wisnuc UserName: wisnuc Password: wisnuc (Remember to install openssh-server)
 + Enter shell after install Ubuntu 16.04 success
 + chroot /target
-+ wget install-appifi.sh from https://github.com/JiangWeiGitHub/appifi-system/blob/master/amd64/ovf/Ubuntu-16.04-server-64bit/install-appifi.sh
++ wget install-appifi.sh from https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/ovf/Ubuntu-16.04-server-64bit/install-appifi.sh
 + run install-appifi.sh
   - Edit & update APT sourcelist
   - Install avahi with apt-get
