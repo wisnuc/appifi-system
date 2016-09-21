@@ -21,13 +21,13 @@ system installation for appifi and it's dependencies
   - Hard disk: 80G
   - Others: Default
 + **appifi-system Related**
-  - OS: Ubuntu 16.04 64bit Server
+  - OS: Ubuntu 16.04.1 64bit Server
   - Essential Softwares: **Docker** **Nodejs** 
 
 ### Procedure
-+ Use VMware to install Ubuntu 16.04
++ Use VMware to install Ubuntu 16.04.1
 + HostName: wisnuc UserName: wisnuc Password: wisnuc (Remember to install openssh-server)
-+ Enter shell after install Ubuntu 16.04 success
++ Enter shell after install Ubuntu 16.04.1 success
 + chroot /target
 + wget install-appifi.sh from https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/install-appifi.sh
 + run install-appifi.sh
