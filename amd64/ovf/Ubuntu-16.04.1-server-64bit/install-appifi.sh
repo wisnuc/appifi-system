@@ -82,7 +82,7 @@ tar Jxf $node_package_name
 #
 # install nodejs's global bianry packages
 #
-npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
+/usr/local/bin/npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
 
 #
 # install some essential packages for docker
