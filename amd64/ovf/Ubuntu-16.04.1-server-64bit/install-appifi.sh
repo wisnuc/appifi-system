@@ -169,7 +169,6 @@ echo "DHCP=ipv4"                    >> /etc/systemd/network/wired.network
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable avahi-daemon
-systemctl disable docker
 systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
 
