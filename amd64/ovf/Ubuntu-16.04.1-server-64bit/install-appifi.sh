@@ -45,6 +45,10 @@ node_download_path="https://nodejs.org/dist/v6.6.0/node-v6.6.0-linux-x64.tar.xz"
 node_package_name="node-v6.6.0-linux-x64.tar.xz"
 node_home_path="node-v6.6.0-linux-x64"
 
+docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.1.tgz"
+docker_package_name="docker-1.12.1.tgz"
+docker_home_path="docker"
+
 system_run_path="/usr/local"
 
 #
@@ -85,24 +89,23 @@ tar Jxf $node_package_name
 npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
 
 #
+# install docker
+#
+wget $docker_download_path
+if [ $? != 0 ]
+then
+   echo "Download docker package failed!"
+   exit 120
+fi
+
+#
 # install some essential packages for docker
 #
 banner "Install essential packages for docker"
-apt-get -y install xz-utils git aufs-tools
+apt-get -y install xz-utils git aufs-tools apt-transport-https ca-certificates
 
-#
-# install docker
-#
-banner "Install docker"
-apt-get update
-apt-get -y install apt-transport-https ca-certificates
-apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F76221572C52609D
-# echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
-echo "deb https://mirrors.ustc.edu.cn/apt.dockerproject.org/repo/ ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
-
-apt-get update
-apt-get -y install linux-image-extra-$(uname -r) apparmor
-apt-get -y install docker-engine
+tar zxf $docker_package_name
+\cp -rf ./$docker_home_path/* $system_run_path/bin/
 
 #
 # Related deployment with appifi bootstrap
@@ -173,5 +176,6 @@ systemctl enable appifi-bootstrap-update.timer
 #
 # cleanup
 #
+apt-get clean
 cd ..
 rm -rf tmp
