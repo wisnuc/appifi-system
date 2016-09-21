@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Platform: Ubuntu 16.04 server 64bit
+# Platform: Ubuntu 16.04.1 server 64bit
 #
 
 #
@@ -41,9 +41,9 @@ apt-get update
 # version
 # nodejs: 6.2.2
 #
-node_download_path="https://nodejs.org/dist/v6.2.2/node-v6.2.2-linux-x64.tar.xz"
-node_package_name="node-v6.2.2-linux-x64.tar.xz"
-node_home_path="node-v6.2.2-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.6.0/node-v6.6.0-linux-x64.tar.xz"
+node_package_name="node-v6.6.0-linux-x64.tar.xz"
+node_home_path="node-v6.6.0-linux-x64"
 
 system_run_path="/usr/local"
 
@@ -60,6 +60,12 @@ mkdir -p /home/tmp
 cd /home/tmp
 
 #
+# install some essential packages for whole system
+#
+banner "Install essential packages for whole system"
+apt-get -y install build-essential python-minimal openssh-server imagemagick libudev-dev
+
+#
 # install nodejs
 #
 banner "Install nodejs"
@@ -72,6 +78,11 @@ fi
 
 tar Jxf $node_package_name
 \cp -rf ./$node_home_path/* $system_run_path
+
+#
+# install nodejs's global bianry packages
+#
+npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
 
 #
 # install some essential packages for docker
