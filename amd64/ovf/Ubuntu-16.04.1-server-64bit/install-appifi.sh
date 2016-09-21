@@ -114,9 +114,9 @@ banner "deploy our own service"
 
 # Get files
 mkdir -p /wisnuc/appifi /wisnuc/appifi-tarballs /wisnuc/appifi-tmp /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/master/appifi-bootstrap-update.packed.js
+wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
 mv appifi-bootstrap-update.packed.js /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/master/appifi-bootstrap.js.sha1
+wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
 mv appifi-bootstrap.js.sha1 /wisnuc/bootstrap
 
 # Appifi Bootstrap Service
