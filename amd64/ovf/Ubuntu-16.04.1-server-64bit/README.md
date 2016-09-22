@@ -31,7 +31,7 @@ system installation for appifi and it's dependencies
 + chroot /target
 + export PATH=$PATH:/usr/local/bin
 + echo $PATH
-+ install-appifi.sh
++ install-appifi.sh<p>
   `wget https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/ovf/Ubuntu-16.04.1-server-64bit/install-appifi.sh`<p>
 + run install-appifi.sh
   `chmod 755 ./install-appifi.sh`<p>
