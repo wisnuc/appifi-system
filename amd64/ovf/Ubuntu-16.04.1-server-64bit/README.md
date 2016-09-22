@@ -29,8 +29,13 @@ system installation for appifi and it's dependencies
 + HostName: wisnuc UserName: wisnuc Password: wisnuc (Remember to install openssh-server)
 + Enter shell after install Ubuntu 16.04.1 success
 + chroot /target
-+ wget install-appifi.sh from https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/ovf/Ubuntu-16.04.1-server-64bit/install-appifi.sh
++ export PATH=$PATH:/usr/local/bin
++ echo $PATH
++ install-appifi.sh
+  `wget https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/ovf/Ubuntu-16.04.1-server-64bit/install-appifi.sh`<p>
 + run install-appifi.sh
+  `chmod 755 ./install-appifi.sh`<p>
+  `./install-appifi.sh`<p>
   - Edit & update APT sourcelist
   - Install avahi with apt-get
   - Install Nodejs with binary lib
@@ -41,6 +46,7 @@ system installation for appifi and it's dependencies
   - Create appifi bootstrap service
   - Create appifi bootstrap update Service & timer
   - Enable & Disable some service with systemctl
+  - Clean apt packages & tmp folder
 + type 'exit' in shell
 + type 'poweroff' in shell
 + Use VMware "export as ovf" on Window 7
