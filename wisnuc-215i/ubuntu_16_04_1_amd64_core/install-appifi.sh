@@ -39,14 +39,14 @@ banner "In install-appifi.sh file"
 # define all pathnames
 #
 # version
-# nodejs: 6.3.1
+# nodejs: 6.6.0
 #
-node_download_path="https://nodejs.org/dist/v6.3.1/node-v6.3.1-linux-x64.tar.xz"
-node_package_name="node-v6.3.1-linux-x64.tar.xz"
-node_home_path="node-v6.3.1-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.6.0/node-v6.6.0-linux-x64.tar.xz"
+node_package_name="node-v6.6.0-linux-x64.tar.xz"
+node_home_path="node-v6.6.0-linux-x64"
 
-docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.11.2.tgz"
-docker_package_name="docker-1.11.2.tgz"
+docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.1.tgz"
+docker_package_name="docker-1.12.1.tgz"
 docker_home_path="docker"
 
 system_run_path="/usr/local"
@@ -64,6 +64,12 @@ mkdir -p /home/tmp
 cd /home/tmp
 
 #
+# install some essential packages for whole system
+#
+banner "Install essential packages for whole system"
+apt-get -y install build-essential python-minimal openssh-server imagemagick libudev-dev
+
+#
 # install nodejs
 #
 banner "Install nodejs"
@@ -78,10 +84,9 @@ tar Jxf $node_package_name
 \cp -rf ./$node_home_path/* $system_run_path
 
 #
-# install some essential packages for docker
+# install nodejs's global bianry packages
 #
-banner "Install essential packages for docker"
-apt-get -y install xz-utils git aufs-tools
+npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
 
 #
 # install docker
@@ -93,6 +98,12 @@ then
    exit 120
 fi
 
+#
+# install some essential packages for docker
+#
+banner "Install essential packages for docker"
+apt-get -y install xz-utils git aufs-tools apt-transport-https ca-certificates
+
 tar zxf $docker_package_name
 \cp -rf ./$docker_home_path/* $system_run_path/bin/
 
@@ -103,9 +114,9 @@ banner "deploy our own service"
 
 # Get files
 mkdir -p /wisnuc/appifi /wisnuc/appifi-tarballs /wisnuc/appifi-tmp /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/master/appifi-bootstrap-update.packed.js
+wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
 mv appifi-bootstrap-update.packed.js /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/master/appifi-bootstrap.js.sha1
+wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
 mv appifi-bootstrap.js.sha1 /wisnuc/bootstrap
 
 # Appifi Bootstrap Service
@@ -164,5 +175,6 @@ systemctl enable appifi-bootstrap-update.timer
 #
 # cleanup
 #
+apt-get clean
 cd ..
 rm -rf tmp
