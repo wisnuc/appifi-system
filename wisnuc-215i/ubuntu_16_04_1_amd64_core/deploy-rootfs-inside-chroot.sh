@@ -73,7 +73,7 @@ apt-get update
 # Download wget
 #
 banner "Download wget"
-apt-get -y wget
+apt-get -y install wget
 
 #
 # install appifi
