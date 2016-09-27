@@ -21,7 +21,8 @@ echo "###################  set up a new loop device - loop0  ###################
 losetup /dev/loop0 ustick.img
 
 echo "###################  write MBR to loop0  ###################"
-# Will fail
+# Will fail, you have to reinstall it after the image is created, and burn this image on the ustick, then you have to do
+# just like: dd bs=440 count=1 if=/usr/lib/syslinux/mbr/mbr.bin of=/dev/sdb conv=noerror,notrunc
 dd bs=440 count=1 if=/usr/lib/syslinux/mbr/mbr.bin of=/dev/loop0 conv=noerror,notrunc
 
 echo "###################  fdisk for loop0  ###################"
@@ -66,7 +67,8 @@ cp ../root/boot/$vmlinuz .
 cp ../root/boot/$initrd .
 
 echo "###################  install syslinux on loop1  ###################"
-# Will fail
+# Will fail, you have to reinstall it after the image is created, and burn this image on the ustick, then you have to do
+# just like: syslinux -i /dev/sdb1 # the first partition on ustick
 syslinux -i /dev/loop1
 
 echo "###################  create syslinux.cfg  ###################"
