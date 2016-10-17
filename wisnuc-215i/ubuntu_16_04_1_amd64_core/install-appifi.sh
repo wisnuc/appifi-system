@@ -39,14 +39,17 @@ banner "In install-appifi.sh file"
 # define all pathnames
 #
 # version
-# nodejs: 6.6.0
+# nodejs: 6.8.1
 #
-node_download_path="https://nodejs.org/dist/v6.6.0/node-v6.6.0-linux-x64.tar.xz"
-node_package_name="node-v6.6.0-linux-x64.tar.xz"
-node_home_path="node-v6.6.0-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.8.1/node-v6.8.1-linux-x64.tar.xz"
+node_package_name="node-v6.8.1-linux-x64.tar.xz"
+node_home_path="node-v6.8.1-linux-x64"
 
-docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.1.tgz"
-docker_package_name="docker-1.12.1.tgz"
+# version
+# docker: 1.12.2
+#
+docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.2.tgz"
+docker_package_name="docker-1.12.2.tgz"
 docker_home_path="docker"
 
 system_run_path="/usr/local"
@@ -67,7 +70,7 @@ cd /home/tmp
 # install some essential packages for whole system
 #
 banner "Install essential packages for whole system"
-apt-get -y install build-essential python-minimal openssh-server imagemagick libudev-dev
+apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg libudev-dev samba
 
 #
 # install nodejs
