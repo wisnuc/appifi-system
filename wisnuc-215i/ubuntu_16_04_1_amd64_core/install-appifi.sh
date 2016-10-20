@@ -70,7 +70,7 @@ cd /home/tmp
 # install some essential packages for whole system
 #
 banner "Install essential packages for whole system"
-apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg libudev-dev samba
+apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg libudev-dev samba udisks2
 
 #
 # install nodejs
