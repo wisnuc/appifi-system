@@ -41,9 +41,9 @@ banner "In install-appifi.sh file"
 # version
 # nodejs: 6.8.1
 #
-node_download_path="https://nodejs.org/dist/v6.8.1/node-v6.8.1-linux-x64.tar.xz"
-node_package_name="node-v6.8.1-linux-x64.tar.xz"
-node_home_path="node-v6.8.1-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.9.0/node-v6.9.0-linux-x64.tar.xz"
+node_package_name="node-v6.9.0-linux-x64.tar.xz"
+node_home_path="node-v6.9.0-linux-x64"
 
 # version
 # docker: 1.12.2
@@ -70,7 +70,7 @@ cd /home/tmp
 # install some essential packages for whole system
 #
 banner "Install essential packages for whole system"
-apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg libudev-dev samba udisks2
+apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg samba udisks2
 
 #
 # install nodejs
@@ -89,7 +89,7 @@ tar Jxf $node_package_name
 #
 # install nodejs's global bianry packages
 #
-npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
+# npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
 
 #
 # install docker
