@@ -176,8 +176,8 @@ systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
 
 # disable samba
-systemctl stop smbd
-systemctl disable smbd
+systemctl stop smbd nmbd
+systemctl disable smbd nmbd
 
 #
 # cleanup
