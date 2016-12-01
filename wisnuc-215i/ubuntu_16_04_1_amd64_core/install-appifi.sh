@@ -41,9 +41,9 @@ banner "In install-appifi.sh file"
 # version
 # nodejs: 6.8.1
 #
-node_download_path="https://nodejs.org/dist/v6.9.0/node-v6.9.0-linux-x64.tar.xz"
-node_package_name="node-v6.9.0-linux-x64.tar.xz"
-node_home_path="node-v6.9.0-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz"
+node_package_name="node-v6.9.1-linux-x64.tar.xz"
+node_home_path="node-v6.9.1-linux-x64"
 
 # version
 # docker: 1.12.2
