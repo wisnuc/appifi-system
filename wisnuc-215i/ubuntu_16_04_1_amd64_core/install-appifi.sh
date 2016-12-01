@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Platform: Ubuntu 16.04 server 64bit
+# Platform: Ubuntu 16.04.1 server 64bit
 #
 
 #
@@ -39,17 +39,17 @@ banner "In install-appifi.sh file"
 # define all pathnames
 #
 # version
-# nodejs: 6.8.1
+# nodejs: 6.9.1
 #
 node_download_path="https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz"
 node_package_name="node-v6.9.1-linux-x64.tar.xz"
 node_home_path="node-v6.9.1-linux-x64"
 
 # version
-# docker: 1.12.2
+# docker: 1.12.3
 #
-docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.2.tgz"
-docker_package_name="docker-1.12.2.tgz"
+docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.3.tgz"
+docker_package_name="docker-1.12.3.tgz"
 docker_home_path="docker"
 
 system_run_path="/usr/local"
