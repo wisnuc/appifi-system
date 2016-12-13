@@ -39,14 +39,17 @@ apt-get update
 # define all pathnames
 #
 # version
-# nodejs: 6.2.2
+# nodejs: 6.9.2
 #
-node_download_path="https://nodejs.org/dist/v6.6.0/node-v6.6.0-linux-x64.tar.xz"
-node_package_name="node-v6.6.0-linux-x64.tar.xz"
-node_home_path="node-v6.6.0-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-x64.tar.xz"
+node_package_name="node-v6.9.2-linux-x64.tar.xz"
+node_home_path="node-v6.9.2-linux-x64"
 
-docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.1.tgz"
-docker_package_name="docker-1.12.1.tgz"
+# version
+# docker: 1.12.4
+#
+docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.4.tgz"
+docker_package_name="docker-1.12.4.tgz"
 docker_home_path="docker"
 
 system_run_path="/usr/local"
@@ -67,7 +70,7 @@ cd /home/tmp
 # install some essential packages for whole system
 #
 banner "Install essential packages for whole system"
-apt-get -y install build-essential python-minimal openssh-server imagemagick libudev-dev
+apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg samba udisks2
 
 #
 # install nodejs
@@ -82,11 +85,6 @@ fi
 
 tar Jxf $node_package_name
 \cp -rf ./$node_home_path/* $system_run_path
-
-#
-# install nodejs's global bianry packages
-#
-npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
 
 #
 # install docker
@@ -114,9 +112,9 @@ banner "deploy our own service"
 
 # Get files
 mkdir -p /wisnuc/appifi /wisnuc/appifi-tarballs /wisnuc/appifi-tmp /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
+wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/master/appifi-bootstrap-update.packed.js
 mv appifi-bootstrap-update.packed.js /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
+wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/master/appifi-bootstrap.js.sha1
 mv appifi-bootstrap.js.sha1 /wisnuc/bootstrap
 
 # Appifi Bootstrap Service
@@ -171,6 +169,10 @@ systemctl enable systemd-resolved
 systemctl enable avahi-daemon
 systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
+
+# disable samba
+systemctl stop smbd nmbd
+systemctl disable smbd nmbd
 
 #
 # cleanup
