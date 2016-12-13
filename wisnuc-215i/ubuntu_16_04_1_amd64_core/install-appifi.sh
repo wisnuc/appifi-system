@@ -46,10 +46,10 @@ node_package_name="node-v6.9.2-linux-x64.tar.xz"
 node_home_path="node-v6.9.2-linux-x64"
 
 # version
-# docker: 1.12.3
+# docker: 1.12.4
 #
-docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.3.tgz"
-docker_package_name="docker-1.12.3.tgz"
+docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.4.tgz"
+docker_package_name="docker-1.12.4.tgz"
 docker_home_path="docker"
 
 system_run_path="/usr/local"
