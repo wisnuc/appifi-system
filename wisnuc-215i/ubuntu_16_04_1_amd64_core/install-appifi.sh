@@ -179,6 +179,10 @@ systemctl enable appifi-bootstrap-update.timer
 systemctl stop smbd nmbd
 systemctl disable smbd nmbd
 
+# just for test
+wget https://github.com/JiangWeiGitHub/appifi-system/raw/master/wisnuc-215i/ubuntu_16_04_1_amd64_core/appifi-0.2.16-4895487-3a2df4d1-pre.tar.gz
+mv appifi-0.2.16-4895487-3a2df4d1-pre.tar.gz /wisnuc/appifi-tarballs
+
 #
 # cleanup
 #
