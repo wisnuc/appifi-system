@@ -22,7 +22,7 @@
 + Open shell
 + Check APT sourclist (`/etc/apt/sources.list`)
 + Download install-appifi.sh<p>
-  `wget https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/pc/ubuntu-16.04.1-amd64/install-appifi.sh`<p>
+  `wget https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/pc/ubuntu-16-04-1-amd64/install-appifi.sh`<p>
 + Copy `node-v6.9.2-linux-x64.tar.xz` & `docker-1.12.4.tgz` & `appifi-bootstrap-update.packed.js` & `appifi-bootstrap.js.sha1` under the same level directory with `install-appifi.sh`
 + Run install-appifi.sh<p>
   `chmod 755 ./install-appifi.sh`<p>

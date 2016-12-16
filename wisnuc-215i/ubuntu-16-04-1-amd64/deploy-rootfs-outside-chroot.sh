@@ -46,7 +46,7 @@ banner "In deploy-rootfs-outside-chroot file"
 tarball="rootfs.tar.gz"
 untar_tmp_folder="appifi-rootfs"
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
-deploy_rootfs_inside_chroot_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64/deploy-rootfs-inside-chroot.sh"
+deploy_rootfs_inside_chroot_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu-16-04-1-amd64/deploy-rootfs-inside-chroot.sh"
 deploy_rootfs_inside_chroot_name="deploy-rootfs-inside-chroot.sh"
 
 new_tarball_name="wisnuc-appifi-rootfs.tar.gz"

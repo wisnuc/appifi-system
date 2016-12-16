@@ -40,7 +40,7 @@ banner "In deploy-rootfs-inside-chroot file"
 #
 # define all pathnames
 #
-install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64/install-appifi.sh"
+install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu-16-04-1-amd64/install-appifi.sh"
 install_appifi_name="install-appifi.sh"
 
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"
