@@ -1,5 +1,5 @@
 ### Goal
-  1. users only need to run a shell script inside `Ubuntu 16.04.1 amd64` operation system on their own PC, and `Appifi System` will run after reboot
+  1. users only need to copy some files & run a shell script inside `Ubuntu 16.04.1 amd64` operating system on their own PC, and `Appifi System` will be running after reboot.
 
 ### Configuration
 + **Host PC Related**
@@ -15,24 +15,24 @@
   - Hard disk: 80G
   - Others: Default
 + **appifi-system Related**
-  - OS: Ubuntu 16.04.1 AMD64 Desktop
+  - OS: Ubuntu 16.04.1 amd64 Desktop
 
 ### Procedure
 + Run Ubuntu 16.04.1
 + Open shell
 + Check APT sourclist (`/etc/apt/sources.list`)
 + Download install-appifi.sh<p>
-  `wget https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/pc/ubuntu-16.04.1-server-amd64/install-appifi.sh`<p>
+  `wget https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/pc/ubuntu-16.04.1-amd64/install-appifi.sh`<p>
 + Copy `node-v6.9.2-linux-x64.tar.xz` & `docker-1.12.4.tgz` & `appifi-bootstrap-update.packed.js` & `appifi-bootstrap.js.sha1` under the same level directory with `install-appifi.sh`
 + Run install-appifi.sh<p>
   `chmod 755 ./install-appifi.sh`<p>
   `./install-appifi.sh`<p>
   - Install avahi with apt-get
-  - Install Nodejs with binary lib
-  - Install docker with apt-get
+  - Install Nodejs with local binary lib
+  - Install docker with local binary lib
   - Create some folders under 'wisnuc'
-  - Get 'appifi-bootstrap-update.packed.js' with wget
-  - Get 'appifi-bootstrap.js.sha1' with wget
+  - Get 'appifi-bootstrap-update.packed.js' with local file
+  - Get 'appifi-bootstrap.js.sha1' with local file
   - Create appifi bootstrap service
   - Create appifi bootstrap update Service & timer
   - Enable & Disable some service with systemctl
