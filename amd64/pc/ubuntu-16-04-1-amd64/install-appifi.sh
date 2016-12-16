@@ -23,15 +23,6 @@ banner()
 
 banner "Running install-appifi.sh file"
 
-banner "Checking files"
-if [ -f $node_package_name && -f $docker_package_name && -f "appifi-bootstrap-update.packed.js" && -f "appifi-bootstrap.js.sha1" ]
-then
-    echo "Files Exist."
-else
-    echo "Can not find one or more files!"
-    return 160
-fi
-
 #
 # update apt sourcelist first
 #
@@ -63,6 +54,18 @@ docker_package_name="docker-1.12.4.tgz"
 docker_home_path="docker"
 
 system_run_path="/usr/local"
+
+#
+# check files
+#
+banner "Checking files"
+if [ -f $node_package_name && -f $docker_package_name && -f "appifi-bootstrap-update.packed.js" && -f "appifi-bootstrap.js.sha1" ]
+then
+    echo "Files Exist."
+else
+    echo "Can not find one or more files!"
+    exit 160
+fi
 
 #
 # install avahi packages
