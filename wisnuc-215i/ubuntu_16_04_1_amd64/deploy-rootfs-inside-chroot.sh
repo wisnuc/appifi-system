@@ -40,10 +40,7 @@ banner "In deploy-rootfs-inside-chroot file"
 #
 # define all pathnames
 #
-# version
-# nodejs: 6.2.2
-#
-install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64_core/install-appifi.sh"
+install_appifi_download_path="https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/wisnuc-215i/ubuntu_16_04_1_amd64/install-appifi.sh"
 install_appifi_name="install-appifi.sh"
 
 kernel_package="linux-image-4.3.3.001+_001_amd64.deb"

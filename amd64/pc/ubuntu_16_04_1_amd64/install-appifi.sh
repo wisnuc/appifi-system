@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #
-# Platform: Ubuntu 16.04 server 64bit
+# Platform: Ran through on Ubuntu 16.04.1 Desktop 64bit
 #
 
 #
-# Operation Path: chroot /target
+# Caveat: using local packages
 #
 
 set -e
@@ -21,17 +21,27 @@ banner()
 	echo ""
 }
 
-banner "In install-appifi.sh file"
+banner "Running install-appifi.sh file"
+
+banner "Checking files"
+if [ -f $node_package_name && -f $docker_package_name && -f "appifi-bootstrap-update.packed.js" && -f "appifi-bootstrap.js.sha1" ]
+then
+    echo "Files Exist."
+else
+    echo "Can not find one or more files!"
+    return 160
+fi
 
 #
 # update apt sourcelist first
 #
 banner "Update apt"
-echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list
-echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list
-echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse" >> /etc/apt/sources.list
-echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list
-echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list
+### use system's configuration ###
+# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list
+# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list
+# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse" >> /etc/apt/sources.list
+# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list
+# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list
 
 apt-get update
 
@@ -39,11 +49,18 @@ apt-get update
 # define all pathnames
 #
 # version
-# nodejs: 6.2.2
+# nodejs: 6.9.2
 #
-node_download_path="https://nodejs.org/dist/v6.2.2/node-v6.2.2-linux-x64.tar.xz"
-node_package_name="node-v6.2.2-linux-x64.tar.xz"
-node_home_path="node-v6.2.2-linux-x64"
+node_download_path="https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-x64.tar.xz"
+node_package_name="node-v6.9.2-linux-x64.tar.xz"
+node_home_path="node-v6.9.2-linux-x64"
+
+# version
+# docker: 1.12.4
+#
+docker_download_path="https://get.docker.com/builds/Linux/x86_64/docker-1.12.4.tgz"
+docker_package_name="docker-1.12.4.tgz"
+docker_home_path="docker"
 
 system_run_path="/usr/local"
 
@@ -60,38 +77,70 @@ mkdir -p /home/tmp
 cd /home/tmp
 
 #
+# install some essential packages for whole system
+#
+banner "Install essential packages for whole system"
+apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg samba udisks2
+
+###################################################################
+# #
+# # install nodejs
+# #
+# banner "Install nodejs"
+# wget $node_download_path
+# if [ $? != 0 ]
+# then
+#    echo "Download nodejs package failed!"
+#    exit 110
+# fi
+# 
+# tar Jxf $node_package_name
+# \cp -rf ./$node_home_path/* $system_run_path
+
+#
 # install nodejs
 #
+### using local package ###
 banner "Install nodejs"
-wget $node_download_path
-if [ $? != 0 ]
-then
-   echo "Download nodejs package failed!"
-   exit 110
-fi
-
-tar Jxf $node_package_name
+tar Jxf ./$node_package_name
 \cp -rf ./$node_home_path/* $system_run_path
+###################################################################
 
-#
-# install some essential packages for docker
-#
-banner "Install essential packages for docker"
-apt-get -y install xz-utils git aufs-tools
+###################################################################
+# #
+# # install docker
+# #
+# wget $docker_download_path
+# if [ $? != 0 ]
+# then
+#    echo "Download docker package failed!"
+#    exit 120
+# fi
+# 
+# 
+# #
+# # install some essential packages for docker
+# #
+# banner "Install essential packages for docker"
+# apt-get -y install xz-utils git aufs-tools apt-transport-https ca-certificates
+# 
+# tar zxf $docker_package_name
+# \cp -rf ./$docker_home_path/* $system_run_path/bin/
 
 #
 # install docker
 #
 banner "Install docker"
-apt-get update
-apt-get -y install apt-transport-https ca-certificates
-apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F76221572C52609D
-# echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
-echo "deb https://mirrors.ustc.edu.cn/apt.dockerproject.org/repo/ ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
 
-apt-get update
-# apt-get -y install linux-image-extra-$(uname -r) apparmor
-apt-get -y install docker-engine
+#
+# install some essential packages for docker
+#
+apt-get -y install xz-utils git aufs-tools apt-transport-https ca-certificates
+
+### using local package ###
+tar zxf ./$docker_package_name
+\cp -rf ./$docker_home_path/* $system_run_path/bin/
+###################################################################
 
 #
 # Related deployment with appifi bootstrap
@@ -100,9 +149,13 @@ banner "deploy our own service"
 
 # Get files
 mkdir -p /wisnuc/appifi /wisnuc/appifi-tarballs /wisnuc/appifi-tmp /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/master/appifi-bootstrap-update.packed.js
+
+# wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
+### using local package ###
 mv appifi-bootstrap-update.packed.js /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/master/appifi-bootstrap.js.sha1
+
+# wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
+### using local package ###
 mv appifi-bootstrap.js.sha1 /wisnuc/bootstrap
 
 # Appifi Bootstrap Service
@@ -155,12 +208,16 @@ echo "DHCP=ipv4"                    >> /etc/systemd/network/wired.network
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable avahi-daemon
-systemctl disable docker
 systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
+
+# disable samba
+systemctl stop smbd nmbd
+systemctl disable smbd nmbd
 
 #
 # cleanup
 #
+apt-get clean
 cd ..
 rm -rf tmp

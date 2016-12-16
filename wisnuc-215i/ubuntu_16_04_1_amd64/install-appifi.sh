@@ -91,9 +91,11 @@ tar Jxf $node_package_name
 #
 # npm --registry https://registry.npm.taobao.org install -g xxhash fs-xattr udev
 
+###################################################
 #
 # install docker
 #
+### Binary way ###
 wget $docker_download_path
 if [ $? != 0 ]
 then
@@ -109,6 +111,18 @@ apt-get -y install xz-utils git aufs-tools apt-transport-https ca-certificates
 
 tar zxf $docker_package_name
 \cp -rf ./$docker_home_path/* $system_run_path/bin/
+
+### Docker APT way ###
+# apt-get update
+# apt-get -y install apt-transport-https ca-certificates
+# apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F76221572C52609D
+# # echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
+# echo "deb https://mirrors.ustc.edu.cn/apt.dockerproject.org/repo/ ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
+# 
+# apt-get update
+# # apt-get -y install linux-image-extra-$(uname -r) apparmor
+# apt-get -y install docker-engine
+###################################################
 
 #
 # Related deployment with appifi bootstrap
@@ -180,7 +194,7 @@ systemctl stop smbd nmbd
 systemctl disable smbd nmbd
 
 # just for test
-wget https://github.com/JiangWeiGitHub/appifi-system/raw/master/wisnuc-215i/ubuntu_16_04_1_amd64_core/appifi-0.2.16-4895487-3a2df4d1-pre.tar.gz
+wget https://github.com/JiangWeiGitHub/appifi-system/raw/master/wisnuc-215i/ubuntu_16_04_1_amd64/appifi-0.2.16-4895487-3a2df4d1-pre.tar.gz
 mv appifi-0.2.16-4895487-3a2df4d1-pre.tar.gz /wisnuc/appifi-tarballs
 
 #
