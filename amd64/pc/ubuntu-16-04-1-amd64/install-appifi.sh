@@ -59,7 +59,7 @@ system_run_path="/usr/local"
 # check files
 #
 banner "Checking files"
-if [ -f $node_package_name && -f $docker_package_name && -f "appifi-bootstrap-update.packed.js" && -f "appifi-bootstrap.js.sha1" ]
+if [[ -e $node_package_name && -e $docker_package_name && -e "appifi-bootstrap-update.packed.js" && -e "appifi-bootstrap.js.sha1" ]]
 then
     echo "Files Exist."
 else
