@@ -63,8 +63,8 @@ apt-get -y install avahi-daemon avahi-utils
 #
 # create a new empty folder
 #
-mkdir ./tmp
-cd ./tmp
+mkdir -p ./tmp/tmp
+cd ./tmp/tmp
 
 #
 # install some essential packages for whole system
@@ -178,5 +178,5 @@ systemctl disable smbd nmbd
 # cleanup
 #
 apt-get clean
-cd ..
-rm -rf tmp
+cd ../..
+rm -rf ./tmp

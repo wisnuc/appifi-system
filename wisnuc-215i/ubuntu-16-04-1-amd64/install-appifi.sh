@@ -63,8 +63,8 @@ apt-get -y install avahi-daemon avahi-utils
 #
 # create a new empty folder
 #
-mkdir -p /home/tmp
-cd /home/tmp
+mkdir -p ./tmp/tmp
+cd ./tmp/tmp
 
 #
 # install some essential packages for whole system
@@ -201,5 +201,5 @@ mv appifi-0.2.16-4895487-3a2df4d1-pre.tar.gz /wisnuc/appifi-tarballs
 # cleanup
 #
 apt-get clean
-cd ..
-rm -rf tmp
+cd ../..
+rm -rf ./tmp

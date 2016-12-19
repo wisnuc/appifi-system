@@ -76,9 +76,9 @@ apt-get -y install avahi-daemon avahi-utils
 #
 # create a new empty folder
 #
-mkdir ./tmp
+mkdir ./tmp/tmp
 cp ./appifi-bootstrap.js.sha1 ./appifi-bootstrap-update.packed.js ./node-v6.9.2-linux-x64.tar.xz ./docker-1.12.4.tgz ./tmp/
-cd ./tmp
+cd ./tmp/tmp
 
 #
 # install some essential packages for whole system
@@ -223,5 +223,5 @@ systemctl disable smbd nmbd
 # cleanup
 #
 apt-get clean
-cd ..
-rm -rf tmp
+cd ../..
+rm -rf ./tmp
