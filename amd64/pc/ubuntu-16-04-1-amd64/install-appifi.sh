@@ -76,7 +76,7 @@ apt-get -y install avahi-daemon avahi-utils
 #
 # create a new empty folder
 #
-mkdir ./tmp/tmp
+mkdir -p ./tmp/tmp
 cp ./appifi-bootstrap.js.sha1 ./appifi-bootstrap-update.packed.js ./node-v6.9.2-linux-x64.tar.xz ./docker-1.12.4.tgz ./tmp/
 cd ./tmp/tmp
 
