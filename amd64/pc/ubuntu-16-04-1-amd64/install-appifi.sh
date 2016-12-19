@@ -34,7 +34,7 @@ banner "Update apt"
 # echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list
 # echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list
 
-apt-get update && apt-get upgrade
+apt-get update && apt-get -y upgrade
 
 #
 # define all pathnames
