@@ -33,7 +33,7 @@ echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-proposed main restricted uni
 echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list
 echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list
 
-apt-get update
+apt-get update && apt-get upgrade
 
 #
 # define all pathnames
@@ -63,8 +63,8 @@ apt-get -y install avahi-daemon avahi-utils
 #
 # create a new empty folder
 #
-mkdir -p /home/tmp
-cd /home/tmp
+mkdir ./tmp
+cd ./tmp
 
 #
 # install some essential packages for whole system
