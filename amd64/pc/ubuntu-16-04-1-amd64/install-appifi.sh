@@ -84,7 +84,7 @@ cd ./$tmpFolder
 # install some essential packages for whole system
 #
 banner "Install essential packages for whole system"
-apt-get -y install build-essential python-minimal openssh-server imagemagick ffmpeg samba udisks2
+apt-get -y install build-essential python-minimal openssh-server btrfs-tools imagemagick ffmpeg samba udisks2
 
 ###################################################################
 # #
