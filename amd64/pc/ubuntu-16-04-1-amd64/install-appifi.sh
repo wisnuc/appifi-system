@@ -222,10 +222,12 @@ systemctl disable smbd nmbd
 #
 # cleanup
 #
-### remove kernel which is not used ###
-dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs apt-get -y purge
 
-apt-get clean && apt-get autoclean && apt-get -y autoremove
+### remove kernel which is not used ###
+# no need, only one kernel (4.4.0-53-generic) #
+# dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs apt-get -y purge
+
+apt-get clean && apt-get autoclean
 
 cd ..
 rm -rf ./$tmpFolder
