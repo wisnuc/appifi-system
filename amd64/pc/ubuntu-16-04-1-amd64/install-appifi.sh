@@ -33,7 +33,8 @@ echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-backports main restricted un
 echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list
 echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list
 
-apt-get update && apt-get -y upgrade
+# apt-get update && apt-get -y upgrade
+apt-get update
 
 #
 # define all pathnames
