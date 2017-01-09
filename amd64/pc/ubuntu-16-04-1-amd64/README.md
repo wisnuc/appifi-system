@@ -22,7 +22,7 @@
 + Open shell
 + Download install-appifi.sh<p>
   `wget https://raw.githubusercontent.com/JiangWeiGitHub/appifi-system/master/amd64/pc/ubuntu-16-04-1-amd64/install-appifi.sh`<p>
-+ Copy `node-v6.9.2-linux-x64.tar.xz` & `docker-1.12.4.tgz` & `appifi-bootstrap-update.packed.js` & `appifi-bootstrap.js.sha1` under the same level directory with `install-appifi.sh`
++ Copy `node-v6.9.2-linux-x64.tar.xz` & `docker-1.12.4.tgz` & `appifi-bootstrap-update.packed.js` & `appifi-bootstrap.js.sha1` under the same level directory with `install-appifi.sh`<p>
   - `node-v6.9.2-linux-x64.tar.xz` [*download path*](https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-x64.tar.xz)<p>
   - `docker-1.12.4.tgz` [*download path*](https://get.docker.com/builds/Linux/x86_64/docker-1.12.4.tgz)<p>
   - `appifi-bootstrap-update.packed.js` [*download path*](https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js)<p>
