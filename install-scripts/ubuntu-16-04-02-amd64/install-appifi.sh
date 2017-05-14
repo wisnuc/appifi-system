@@ -1,15 +1,10 @@
 #!/bin/bash
 
-#
-# Platform: Ubuntu 16.04.2 amd64 server
-#
-
 set -e
 
 DASH="------------------------------------------------------------"
 
-banner()
-{
+function banner {
 	echo ""
 	echo $DASH
 	echo "$1"
@@ -17,22 +12,6 @@ banner()
 	echo ""
 }
 
-banner "apt update"
-sudo apt-get update
-
-#
-# update apt sourcelist first
-#
-# banner "Update apt"
-# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list
-# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list
-# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse" >> /etc/apt/sources.list
-# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list
-# echo "deb http://ubuntu.uestc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list
-
-#
-# install avahi packages
-#
 banner "install nodejs"
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
 apt -y install nodejs
@@ -45,20 +24,18 @@ apt update
 apt -y install docker-ce
 
 banner "install dependencies"
-apt -y install avahi-daemon avahi-utils build-essential python-minimal openssh-server btrfs-tools imagemagick ffmpeg samba udisks2
+apt -y install avahi-daemon avahi-utils build-essential python-minimal btrfs-tools imagemagick ffmpeg samba udisks2
 
-#
-# Related deployment with appifi bootstrap
-#
+banner "stop and disable smb/nmb service"
+systemctl stop smbd nmbd
+systemctl disable smbd nmbd
+
 banner "Pull bootstrap files"
 mkdir -p /wisnuc/bootstrap
 wget -O /wisnuc/bootstrap/appifi-bootstrap-update.packed.js  https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
 wget -O /wisnuc/bootstrap/appifi-bootstrap.js.sha1 https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
 
-#
-# appifi-bootstrap service file
-#
-banner "install appifi-bootstrap service file"
+banner "install appifi-bootstrap and appifi-bootstrap-update unit files"
 cat > /lib/systemd/system/appifi-bootstrap.service <<EOF
 [Unit]
 Description=Appifi Bootstrap Server
@@ -75,10 +52,6 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-#
-# Appifi Bootstrap Update Service
-#
-banner "install appifi-bootstrap-update service file"
 cat > /lib/systemd/system/appifi-bootstrap-update.service <<EOF
 [Unit]
 Description=Appifi Bootstrap Update
@@ -88,10 +61,6 @@ Type=simple
 ExecStart=/usr/bin/node /wisnuc/bootstrap/appifi-bootstrap-update.packed.js
 EOF
 
-#
-# Appifi Bootstrap Update Service Timer
-#
-banner "install appifi-bootstrap-update timer file"
 cat > /lib/systemd/system/appifi-bootstrap-update.timer <<EOF
 [Unit]
 Description=Runs Appifi Bootstrap Update every 4 hour
@@ -105,27 +74,13 @@ Unit=appifi-bootstrap-update.service
 WantedBy=multi-user.target
 EOF
 
-# Create soft link
-# ln -s /lib/systemd/system/appifi-bootstrap* /etc/systemd/system/multi-user.target.wants/
-# configure network
-# echo "[Match]"                       > /etc/systemd/network/wired.network
-# echo "Name=en*"                     >> /etc/systemd/network/wired.network
-# echo "[Network]"                    >> /etc/systemd/network/wired.network
-# echo "DHCP=ipv4"                    >> /etc/systemd/network/wired.network
-
 banner "system daemon reload"
 systemctl daemon-reload
 
-banner "stop and disable smb/nmb service"
-systemctl stop smbd nmbd
-systemctl disable smbd nmbd
-
-banner "enable networkd, resolved, avahi"
-systemctl enable systemd-networkd
-systemctl enable systemd-resolved
-systemctl enable avahi-daemon
-
 banner "enable appifi-bootstrap, appifi-bootstrap-update"
+# systemctl enable avahi-daemon
 systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
+
+banner "finished"
 
