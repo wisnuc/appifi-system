@@ -18,7 +18,7 @@ banner()
 }
 
 banner "apt update"
-apt-get update
+sudo apt-get update
 
 #
 # update apt sourcelist first
@@ -34,25 +34,26 @@ apt-get update
 # install avahi packages
 #
 banner "install nodejs"
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt install -y nodejs
+curl -sL https://deb.nodesource.com/setup_6.x | bash -
+apt -y install nodejs
 
 banner "install docker"
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt update && sudo apt install -y docker-ce
+apt -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt update
+apt -y install docker-ce
 
 banner "install dependencies"
-sudo apt-get install -y avahi-daemon avahi-utils build-essential python-minimal openssh-server btrfs-tools imagemagick ffmpeg samba udisks2
+apt -y install avahi-daemon avahi-utils build-essential python-minimal openssh-server btrfs-tools imagemagick ffmpeg samba udisks2
 
 #
 # Related deployment with appifi bootstrap
 #
 banner "Pull bootstrap files"
 mkdir -p /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js /wisnuc/bootstrap
-wget https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1 /wisnuc/bootstrap
+wget -O /wisnuc/bootstrap/appifi-bootstrap-update.packed.js  https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
+wget -O /wisnuc/bootstrap/appifi-bootstrap.js.sha1 https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
 
 #
 # appifi-bootstrap service file
