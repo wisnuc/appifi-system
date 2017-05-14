@@ -13,8 +13,36 @@ Wisnuc w215i产品已经预装wisnuc系统，用户不需要使用此项目提�
 ## 使用方式
 
 
+### 安装Ubuntu 16.04.2 amd64 server版
 
-## 组件与安装过程
+wisnuc系统不支持LVM，其他无特殊要求；
+
+在选择安装软件时，不要去除缺省选中的standard system utilities，OpenSSH server和Samba file server会在安装脚本中自动安装，此处选不选均可；
+
+root密码需要足够强度，否则局域网内的攻击者获取root密码后可窃取和删除所有文件。
+
+### 安装winsuc系统
+
+登录后执行下面的命令即可。
+
+```
+wget https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-02-amd64/install-appifi.sh
+chmod a+x install-appifi.sh
+sudo ./install-appifi.sh
+```
+
+安装后可以通过执行下述命令启动wisnuc的系统服务，或者重启操作系统后wisnuc系统服务会自动启动。
+
+```
+sudo systemctl start appifi-bootstrap
+```
+
+打开浏览器访问3001端口。
+
+
+## 组件与安装过程说明
+
+本节内容面向开发者和高级用户。
 
 wisnuc系统基于ubuntu server的amd64版本，目前最新版本为16.04.2；在ubuntu发布更新的版本后，此项目在经过充分测试后支持新版本，并不再对老版本提供维护服务。
 
@@ -53,10 +81,10 @@ https://docs.docker.com/engine/installation/linux/ubuntu/
 对于amd64系统，docker安装过程如下：
 
 ```bash
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt update & sudo apt install docker-ce
+sudo apt update && sudo apt install -y docker-ce
 ```
 
 ### wisnuc系统依赖
@@ -181,6 +209,6 @@ wisnuc
 
 ### Caution
 
-    1. It can runs on X86 platform & 215i which is a product of Wisnuc
-    2. We offer ovf file for X86 user; U disk image for 215i user
-    3. You can find the procedure of making ovf or rootfs.tar.gz in related folder
+1. It can runs on X86 platform & 215i which is a product of Wisnuc
+2. We offer ovf file for X86 user; U disk image for 215i user
+3. You can find the procedure of making ovf or rootfs.tar.gz in related folder
