@@ -35,7 +35,7 @@ mkdir -p /wisnuc/bootstrap
 wget -O /wisnuc/bootstrap/appifi-bootstrap-update.packed.js  https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
 wget -O /wisnuc/bootstrap/appifi-bootstrap.js.sha1 https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
 
-banner "install appifi-bootstrap and appifi-bootstrap-update unit files"
+banner "install appifi-bootstrap and appifi-bootstrap-update service"
 cat > /lib/systemd/system/appifi-bootstrap.service <<EOF
 [Unit]
 Description=Appifi Bootstrap Server
@@ -74,11 +74,7 @@ Unit=appifi-bootstrap-update.service
 WantedBy=multi-user.target
 EOF
 
-banner "system daemon reload"
 systemctl daemon-reload
-
-banner "enable appifi-bootstrap, appifi-bootstrap-update"
-# systemctl enable avahi-daemon
 systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
 
