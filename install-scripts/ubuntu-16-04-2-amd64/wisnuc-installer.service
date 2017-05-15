@@ -6,7 +6,7 @@ After=multi-user.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/wisnuc-installer
+ExecStart=/bin/bash /usr/bin/wisnuc-installer
 StandardInput=tty
 StandardOutput=inherit
 StandardError=inherit
