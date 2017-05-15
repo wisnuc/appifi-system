@@ -33,10 +33,14 @@ chmod a+w $BUILD/preseed/ubuntu-server.seed
 cat <<'EOF' >> $BUILD/preseed/ubuntu-server.seed
 
 # Add wisnuc installer
-d-i preseed/late_command string wget -O /target/lib/systemd/system/wisnuc-installer.service \
+d-i preseed/late_command string \
+in-target wget -O /lib/systemd/system/wisnuc-installer.service \
   https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/wisnuc-installer.service --no-check-certificate
-d-i preseed/late_command string wget -O /target/usr/bin/wisnuc-installer \
+
+d-i preseed/late_command string \
+in-target wget -O /usr/bin/wisnuc-installer \
   https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/wisnuc-installer --no-check-certificate
+
 d-i preseed/late_command string in-target systemctl enable wisnuc-installer.service
 EOF
 
