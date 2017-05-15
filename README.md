@@ -26,9 +26,7 @@ root密码需要足够强度，否则局域网内的攻击者获取root密码后
 登录后执行下面的命令即可。
 
 ```
-wget https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-02-amd64/install-appifi.sh
-chmod a+x install-appifi.sh
-sudo ./install-appifi.sh
+curl -s https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-02-amd64/install-appifi.sh | sudo -E bash -
 ```
 
 安装后可以通过执行下述命令启动wisnuc的系统服务，或者重启操作系统后wisnuc系统服务会自动启动。
