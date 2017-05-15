@@ -44,7 +44,7 @@ After=network.target
 [Service]
 Type=idle
 ExecStartPre=/bin/cp /wisnuc/bootstrap/appifi-bootstrap.js.sha1 /wisnuc/bootstrap/appifi-bootstrap.js
-ExecStart=/usr/local/bin/node /wisnuc/bootstrap/appifi-bootstrap.js
+ExecStart=/usr/bin/node /wisnuc/bootstrap/appifi-bootstrap.js
 TimeoutStartSec=3
 Restart=always
 
