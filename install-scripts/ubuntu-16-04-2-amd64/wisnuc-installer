@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL=https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-02-amd64/install-appifi.sh
+URL=https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/install-appifi.sh
 SHA1=/wisnuc/bootstrap/appifi-bootstrap.js.sha1
 UPDATE=/wisnuc/bootstrap/appifi-bootstrap-update.packed.js
 
