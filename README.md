@@ -13,25 +13,25 @@ Wisnuc w215i产品已经预装wisnuc系统，用户不需要使用此项目提�
 ## 使用方式
 
 
-### 安装Ubuntu 16.04.2 amd64 server版
+### 第一步：安装Ubuntu 16.04.2 amd64 server版
 
 wisnuc系统不支持LVM，其他无特殊要求；
 
-在选择安装软件时，不要去除缺省选中的standard system utilities，OpenSSH server和Samba file server会在安装脚本中自动安装，此处选不选均可；
+在选择安装软件时，不要去除缺省选中的standard system utilities，选中OpenSSH server；Samba file server会在安装脚本中自动安装，此处选不选均可；
 
 root密码需要足够强度，否则局域网内的攻击者获取root密码后可窃取和删除所有文件。
 
-### 安装winsuc系统
+### 第二步：安装winsuc系统
 
 登录后执行下面的命令即可。
 
-```
+```bash
 curl -s https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-02-amd64/install-appifi.sh | sudo -E bash -
 ```
 
 安装后可以通过执行下述命令启动wisnuc的系统服务，或者重启操作系统后wisnuc系统服务会自动启动。
 
-```
+```bash
 sudo systemctl start appifi-bootstrap
 ```
 
