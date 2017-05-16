@@ -35,7 +35,7 @@ cat <<'EOF' >> $BUILD/preseed/ubuntu-server.seed
 # Install wisnuc installer
 d-i preseed/late_command string \
 in-target wget -O /tmp/preseed-install https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/preseed-install; \
-in-target bash -c "bash -x /tmp/preseed-install > /.preseed-install.log 2>&1"
+in-target bash -c "bash -x /tmp/preseed-install > /preseed-install.log 2>&1"
 EOF
 
 chmod a+w $BUILD/isolinux/isolinux.bin
