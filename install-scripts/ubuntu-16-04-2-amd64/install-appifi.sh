@@ -100,5 +100,3 @@ systemctl enable appifi-bootstrap-update.timer
 systemctl start appifi-bootstrap
 systemctl start appifi-bootstrap-update.timer
 
-echo "WISNUC system successfully installed."
-
