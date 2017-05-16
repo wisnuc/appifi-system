@@ -26,16 +26,16 @@ apt -y install docker-ce
 banner "install dependencies"
 apt -y install avahi-daemon avahi-utils build-essential python-minimal btrfs-tools imagemagick ffmpeg samba udisks2
 
-banner "stop and disable smb/nmb service"
+banner "stop and disable samba service"
 systemctl stop smbd nmbd
 systemctl disable smbd nmbd
 
-banner "Pull bootstrap files"
+banner "pull bootstrap files"
 mkdir -p /wisnuc/bootstrap
 wget -O /wisnuc/bootstrap/appifi-bootstrap-update.packed.js  https://raw.githubusercontent.com/wisnuc/appifi-bootstrap-update/release/appifi-bootstrap-update.packed.js
 wget -O /wisnuc/bootstrap/appifi-bootstrap.js.sha1 https://raw.githubusercontent.com/wisnuc/appifi-bootstrap/release/appifi-bootstrap.js.sha1
 
-banner "install appifi-bootstrap and appifi-bootstrap-update service"
+banner "install and start appifi-bootstrap and appifi-bootstrap-update service"
 cat > /lib/systemd/system/appifi-bootstrap.service <<EOF
 [Unit]
 Description=Appifi Bootstrap Server
@@ -77,6 +77,17 @@ EOF
 systemctl daemon-reload
 systemctl enable appifi-bootstrap
 systemctl enable appifi-bootstrap-update.timer
+systemctl start appifi-bootstrap
+systemctl start appifi-bootstrap-update.timer
 
-banner "finished"
+echo "WISNUC system is successfully installed."
+
+for (( i=30; i>0; i--)); do
+    printf "\rJump to login in $i seconds. Or hit any key to continue."
+    read -s -n 1 -t 1 key
+    if [ $? -eq 0 ]
+    then
+        break
+    fi
+done
 
