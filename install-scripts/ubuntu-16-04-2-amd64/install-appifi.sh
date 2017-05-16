@@ -16,8 +16,6 @@ function banner {
 bash -c "systemctl stop appifi-bootstrap.service"
 bash -c "systemctl stop appifi-bootstrap-update.service"
 
-stopAppifi
-
 banner "install nodejs"
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
 apt -y install nodejs
