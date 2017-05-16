@@ -29,8 +29,8 @@ cat <<'EOF'
         
 EOF
 
-bash -c "systemctl stop appifi-bootstrap.service > /dev/null 2>&1"
-bash -c "systemctl stop appifi-bootstrap-update.service > /dev/null 2>&1"
+bash -c "systemctl stop appifi-bootstrap.service > /dev/null 2>&1; exit 0"
+bash -c "systemctl stop appifi-bootstrap-update.service > /dev/null 2>&1; exit 0"
 
 banner "install nodejs"
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
