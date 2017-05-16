@@ -28,23 +28,23 @@ mkdir -p $BUILD
 cp -rT $ISO $BUILD
 sudo umount $ISO
 
+# cp preseed-install to 
 mkdir -p $BUILD/wisnuc
+cp preseed-install $BUILD/wisnuc
 chmod a+w $BUILD/preseed/ubuntu-server.seed
+
 cat <<'EOF' >> $BUILD/preseed/ubuntu-server.seed
-# Add wisnuc installer
-d-i preseed/late_command string \
-in-target wget -O /lib/systemd/system/wisnuc-installer.service https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/wisnuc-installer.service; \
-in-target wget -O /usr/bin/wisnuc-installer https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/wisnuc-installer; \
-in-target systemctl enable wisnuc-installer.service
+# Install wisnuc installer
+d-i preseed/late_command string in-target /media/cdrom/wisnuc/preseed-install 2&>1 > /.preseed-install.log
 EOF
 
 chmod a+w $BUILD/isolinux/isolinux.bin
-fakeroot mkisofs -r -V "ubuntu-server 16.04.2 wisnuc" \
-            -cache-inodes \
-            -J -l -b isolinux/isolinux.bin \
-            -c isolinux/boot.cat -no-emul-boot \
-            -boot-load-size 4 -boot-info-table \
-            -o $IMAGE $BUILD
+mkisofs -r -V "ubuntu-server 16.04.2 wisnuc" \
+  -cache-inodes \
+  -J -l -b isolinux/isolinux.bin \
+  -c isolinux/boot.cat -no-emul-boot \
+  -boot-load-size 4 -boot-info-table \
+  -o $IMAGE $BUILD
 
 rm -rf $ISO
 # sudo rm -rf $BUILD

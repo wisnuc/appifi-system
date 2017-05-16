@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+URL=https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/wisnuc-installer
+
+wget -O /usr/bin/wisnuc-installer $URL/wisnuc-installer
+wget -O /lib/systemd/system/wisnuc-installer $URL/wisnuc-installer.service
+systemctl enable wisnuc-installer.service
+
