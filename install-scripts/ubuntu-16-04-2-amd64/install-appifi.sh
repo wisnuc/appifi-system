@@ -12,6 +12,17 @@ function banner {
 	echo ""
 }
 
+function stopAppifi {
+
+  systemctl is-active appifi-bootstrap.service
+  if [ $? -eq 0 ]; then systemctl stop appifi-bootstrap.service; fi
+
+  systemctl is-active appifi-bootstrap-update.service
+  if [ $? -eq 0 ]; then systemctl stop appifi-bootstrap-update.service; fi
+}
+
+stopAppifi
+
 banner "install nodejs"
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
 apt -y install nodejs
@@ -80,10 +91,10 @@ systemctl enable appifi-bootstrap-update.timer
 systemctl start appifi-bootstrap
 systemctl start appifi-bootstrap-update.timer
 
-echo "WISNUC system is successfully installed."
+echo "WISNUC system successfully installed."
 
 for (( i=30; i>0; i--)); do
-    printf "\rJump to login in $i seconds. Or hit any key to continue."
+    printf "\rJump to login in $i seconds, or hit any key to continue."
     read -s -n 1 -t 1 key
     if [ $? -eq 0 ]
     then
