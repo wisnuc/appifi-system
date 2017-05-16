@@ -2,7 +2,7 @@
 
 set -e
 
-cat <<'EOF' >> /lib/systemd/system/wisnuc-installer 
+cat <<'EOF' >> /lib/systemd/system/wisnuc-installer.service
 [Unit]
 Description=Wisnuc Installer
 Before=getty@tty1.service

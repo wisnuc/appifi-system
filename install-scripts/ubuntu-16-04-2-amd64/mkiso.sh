@@ -34,7 +34,7 @@ chmod a+w $BUILD/preseed/ubuntu-server.seed
 cat <<'EOF' >> $BUILD/preseed/ubuntu-server.seed
 # Install wisnuc installer
 d-i preseed/late_command string \
-in-target wget /tmp/preseed-install -O https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/preseed-install; \
+in-target wget -O /tmp/preseed-install https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/preseed-install; \
 in-target bash -c "bash -x /tmp/preseed-install 2&>1 > /.preseed-install.log"
 EOF
 
