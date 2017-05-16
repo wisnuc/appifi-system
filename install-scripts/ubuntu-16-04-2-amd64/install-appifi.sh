@@ -12,9 +12,25 @@ function banner {
 	echo ""
 }
 
+cat <<'EOF'
 
-bash -c "systemctl stop appifi-bootstrap.service"
-bash -c "systemctl stop appifi-bootstrap-update.service"
+
+
+
+
+ __      __ .___   _________ _______    ____ ___ _________  
+/  \    /  \|   | /   _____/ \      \  |    |   \\_   ___ \ 
+\   \/\/   /|   | \_____  \  /   |   \ |    |   //    \  \/ 
+ \        / |   | /        \/    |    \|    |  / \     \____
+  \__/\  /  |___|/_______  /\____|__  /|______/   \______  /
+       \/                \/         \/                   \/ 
+
+            Copyright (c) 2014-2018 wisnuc.com
+        
+EOF
+
+bash -c "systemctl stop appifi-bootstrap.service > /dev/null 2>&1"
+bash -c "systemctl stop appifi-bootstrap-update.service > /dev/null 2>&1"
 
 banner "install nodejs"
 curl -sL https://deb.nodesource.com/setup_6.x | bash -
@@ -85,13 +101,4 @@ systemctl start appifi-bootstrap
 systemctl start appifi-bootstrap-update.timer
 
 echo "WISNUC system successfully installed."
-
-for (( i=30; i>0; i--)); do
-    printf "\rJump to login in $i seconds, or hit any key to continue."
-    read -s -n 1 -t 1 key
-    if [ $? -eq 0 ]
-    then
-        break
-    fi
-done
 
