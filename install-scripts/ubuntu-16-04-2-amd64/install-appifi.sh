@@ -12,14 +12,9 @@ function banner {
 	echo ""
 }
 
-function stopAppifi {
 
-  systemctl is-active appifi-bootstrap.service
-  if [ $? -eq 0 ]; then systemctl stop appifi-bootstrap.service; fi
-
-  systemctl is-active appifi-bootstrap-update.service
-  if [ $? -eq 0 ]; then systemctl stop appifi-bootstrap-update.service; fi
-}
+bash -c "systemctl stop appifi-bootstrap.service"
+bash -c "systemctl stop appifi-bootstrap-update.service"
 
 stopAppifi
 
