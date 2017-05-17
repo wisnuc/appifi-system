@@ -27,7 +27,7 @@ cat <<'EOF' > /usr/bin/wisnuc-installer
 URL=https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/install-appifi.sh
 SHA1=/wisnuc/bootstrap/appifi-bootstrap.js.sha1
 UPDATE=/wisnuc/bootstrap/appifi-bootstrap-update.packed.js
-LOG=/.wisnuc-install.log
+LOG=/wisnuc-install.log
 
 if [ -f $SHA1 ] || [ -f $UPDATE ]; then exit 0; fi
 
@@ -41,9 +41,9 @@ if [ $? -eq 0 ]; then
 else
   read -n 1 -s -t 30 -p "Failed to install WISNUC system, please see $LOG for detail. Wait 30 seconds or hit any key to continue"
 fi
-
 EOF
 
+chmod a+x /usr/bin/wisnuc-installer
 systemctl enable wisnuc-installer.service
 
 
