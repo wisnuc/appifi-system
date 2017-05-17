@@ -35,19 +35,16 @@ EOF
 bash -c "systemctl stop appifi-bootstrap.service > /dev/null 2>&1; exit 0"
 bash -c "systemctl stop appifi-bootstrap-update.service > /dev/null 2>&1; exit 0"
 
-banner "install nodejs"
-curl -sL https://deb.nodesource.com/setup_6.x | bash -
-apt -y install nodejs
-
-banner "install docker"
+banner "add docker repo"
 apt -y install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-apt update
-apt -y install docker-ce
 
-banner "install dependencies"
-apt -y install avahi-daemon avahi-utils btrfs-tools imagemagick ffmpeg samba udisks2
+banner "setup nodejs repo"
+curl -sL https://deb.nodesource.com/setup_6.x | bash -
+
+banner "install packages"
+apt -y install nodejs docker-ce avahi-daemon avahi-utils btrfs-tools imagemagick ffmpeg samba udisks2
 
 banner "stop and disable samba service"
 systemctl stop smbd nmbd
