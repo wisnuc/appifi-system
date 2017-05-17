@@ -2,7 +2,7 @@
 
 set -e
 
-cat <<'EOF' >> /lib/systemd/system/wisnuc-installer.service
+cat <<'EOF' > /lib/systemd/system/wisnuc-installer.service
 [Unit]
 Description=Wisnuc Installer
 Before=getty@tty1.service
@@ -20,7 +20,7 @@ StandardError=inherit
 WantedBy=multi-user.target
 EOF
 
-cat <<'EOF' >> /usr/bin/wisnuc-installer
+cat <<'EOF' > /usr/bin/wisnuc-installer
 #!/bin/bash
 
 URL=https://raw.githubusercontent.com/wisnuc/appifi-system/master/install-scripts/ubuntu-16-04-2-amd64/install-appifi.sh
@@ -32,7 +32,7 @@ if [ -f $SHA1 ] || [ -f $UPDATE ]; then exit 0; fi
 
 curl -s $URL | bash - 2>&1 | tee $LOG
 
-echo "install script returns $?"
+echo "install script returns $?" | tee -a $LOG
 
 if [ $? -eq 0 ]; then
   systemctl disable wisnuc-installer.service | tee -a $LOG
@@ -46,6 +46,5 @@ read -n 1 -s -p "Press any key to continue"
 EOF
 
 systemctl enable wisnuc-installer.service
-
 
 
