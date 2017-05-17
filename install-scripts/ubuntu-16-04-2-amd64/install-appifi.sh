@@ -18,6 +18,7 @@ cat <<'EOF'
 
 
 
+
  __      __ .___   _________ _______    ____ ___ _________  
 /  \    /  \|   | /   _____/ \      \  |    |   \\_   ___ \ 
 \   \/\/   /|   | \_____  \  /   |   \ |    |   //    \  \/ 
@@ -26,6 +27,8 @@ cat <<'EOF'
        \/                \/         \/                   \/ 
 
             Copyright (c) 2014-2018 wisnuc.com
+
+
         
 EOF
 
@@ -44,7 +47,7 @@ apt update
 apt -y install docker-ce
 
 banner "install dependencies"
-apt -y install avahi-daemon avahi-utils build-essential python-minimal btrfs-tools imagemagick ffmpeg samba udisks2
+apt -y install avahi-daemon avahi-utils btrfs-tools imagemagick ffmpeg samba udisks2
 
 banner "stop and disable samba service"
 systemctl stop smbd nmbd
