@@ -34,7 +34,7 @@ if [ -f $SHA1 ] || [ -f $UPDATE ]; then exit 0; fi
 curl -s $URL | bash - 2>&1 | tee /wisnuc-install.log
 
 if [ $? -eq 0 ]; then
-  systemctl disable wisnuc-installer.service; fi
+  systemctl disable wisnuc-installer.service
   echo "WISNUC system successfully installed."
   echo ""
 else
