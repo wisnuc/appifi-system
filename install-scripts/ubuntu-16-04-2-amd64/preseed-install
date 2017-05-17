@@ -10,8 +10,9 @@ After=multi-user.target
 
 [Service]
 Type=oneshot
-RemainAfterExit=yes
+ExecStartPre=/usr/bin/touch /tmp/debug-wisnuc-installer-pre
 ExecStart=/bin/bash /usr/bin/wisnuc-installer
+ExecStartPost=/usr/bin/touch /tmp/debug-wisnuc-installer-post
 StandardInput=tty
 StandardOutput=inherit
 StandardError=inherit
