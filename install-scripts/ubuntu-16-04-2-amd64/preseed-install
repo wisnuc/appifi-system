@@ -36,14 +36,18 @@ curl -s $URL | bash - 2>&1 | tee $LOG
 echo "install script returns $?" | tee -a $LOG
 
 if [ $? -eq 0 ]; then
+
   systemctl disable wisnuc-installer.service | tee -a $LOG
   systemctl is-enabled wisnuc-installer.service | tee -a $LOG
-  echo "WISNUC system successfully installed." | tee -a $LOG
+
+  echo "WISNUC system successfully installed, system will reboot in 10 seconds."
+  sleep 10
+  reboot
 else
   echo "failed to install WISNUC system, please see $LOG for detail." | tee -a $LOG
+  read -n 1 -s -p "Press any key to continue"
 fi
 
-read -n 1 -s -p "Press any key to continue"
 EOF
 
 systemctl enable wisnuc-installer.service
