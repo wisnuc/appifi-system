@@ -41,7 +41,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 banner "setup nodejs repo"
-curl -sL https://deb.nodesource.com/setup_6.x | bash -
+curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 banner "install packages"
 apt -y install nodejs docker-ce avahi-daemon avahi-utils btrfs-tools imagemagick ffmpeg samba udisks2
